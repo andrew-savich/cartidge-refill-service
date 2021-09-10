@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.andrewsavich.bajter</groupId>
-	<artifactId>cartidge-refill-service</artifactId>
+	<artifactId>cartridge-refill-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>cartidge-refill-service</name>
+	<name>cartridge-refill-service</name>
 	<description>Cartridge refill service for Bajter</description>
 	<properties>
 		<java.version>11</java.version>
