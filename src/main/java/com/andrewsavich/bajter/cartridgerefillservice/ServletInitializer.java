@@ -1,4 +1,4 @@
-package com.andrewsavich.bajter.cartidgerefillservice;
+package com.andrewsavich.bajter.cartridgerefillservice;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;

@@ -1,10 +1,12 @@
-package com.andrewsavich.bajter.cartidgerefillservice.service.employee;
+package com.andrewsavich.bajter.cartridgerefillservice.service.employee;
 
-import com.andrewsavich.bajter.cartidgerefillservice.dao.EmployeeRepository;
-import com.andrewsavich.bajter.cartidgerefillservice.model.employee.Employee;
+import com.andrewsavich.bajter.cartridgerefillservice.dao.EmployeeRepository;
+import com.andrewsavich.bajter.cartridgerefillservice.model.employee.Employee;
+import com.andrewsavich.bajter.cartridgerefillservice.model.employee.Position;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -19,8 +21,8 @@ public class EmployeeServiceImpl implements EmployeeService{
     }
 
     @Override
-    public Employee getEmployeeById(long id) {
-        return employeeRepository.getById(id);
+    public Employee getEmployeeById(Long id) {
+        return employeeRepository.findById(id).get();
     }
 
     @Override
@@ -31,5 +33,9 @@ public class EmployeeServiceImpl implements EmployeeService{
     @Override
     public void deleteEmployee(Employee employee) {
         employeeRepository.delete(employee);
+    }
+
+    public List<Position> getAllEmployeePositions(){
+        return Arrays.asList(Position.values());
     }
 }

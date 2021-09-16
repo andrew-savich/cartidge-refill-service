@@ -1,4 +1,4 @@
-package com.andrewsavich.bajter.cartidgerefillservice.model.employee;
+package com.andrewsavich.bajter.cartridgerefillservice.model.employee;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -15,7 +15,7 @@ import javax.persistence.*;
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     private String login;
     private String password;

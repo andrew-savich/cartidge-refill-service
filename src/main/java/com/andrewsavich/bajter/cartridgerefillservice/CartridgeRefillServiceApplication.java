@@ -1,4 +1,4 @@
-package com.andrewsavich.bajter.cartidgerefillservice;
+package com.andrewsavich.bajter.cartridgerefillservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

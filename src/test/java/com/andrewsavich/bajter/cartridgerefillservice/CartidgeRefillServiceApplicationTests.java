@@ -1,4 +1,4 @@
-package com.andrewsavich.bajter.cartidgerefillservice;
+package com.andrewsavich.bajter.cartridgerefillservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
