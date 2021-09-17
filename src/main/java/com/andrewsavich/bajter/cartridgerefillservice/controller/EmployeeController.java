@@ -42,4 +42,19 @@ public class EmployeeController {
         return ResponseEntity.ok(employee);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Employee> updateEmployee(@PathVariable Long id, @RequestBody Employee responseEmployee){
+        Employee employee = employeeService.getEmployeeById(id);
+
+        employee.setFirstName(responseEmployee.getFirstName());
+        employee.setLastName(responseEmployee.getLastName());
+        employee.setLogin(responseEmployee.getLogin());
+        employee.setPassword(responseEmployee.getPassword());
+        employee.setPosition(responseEmployee.getPosition());
+
+        Employee updatedEmployee = employeeService.saveEmployee(employee);
+
+        return ResponseEntity.ok(updatedEmployee);
+    }
+
 }
