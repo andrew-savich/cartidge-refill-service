@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin(origins = "http://localhost:3000/")
 @RestController
@@ -36,6 +38,7 @@ public class EmployeeController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id){
+        System.out.println("Get employee: " + id);
         System.out.println("Got id from client: " + id);
         Employee employee = employeeService.getEmployeeById(id);
 
@@ -44,6 +47,8 @@ public class EmployeeController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Employee> updateEmployee(@PathVariable Long id, @RequestBody Employee responseEmployee){
+        System.out.println("Update employee: " + id);
+
         Employee employee = employeeService.getEmployeeById(id);
 
         employee.setFirstName(responseEmployee.getFirstName());
@@ -55,6 +60,19 @@ public class EmployeeController {
         Employee updatedEmployee = employeeService.saveEmployee(employee);
 
         return ResponseEntity.ok(updatedEmployee);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Map<String, Boolean>> deleteEmployee(@PathVariable Long id){
+        System.out.println("Delete employee: " + id);
+        Employee employee = employeeService.getEmployeeById(id);
+
+        employeeService.deleteEmployee(employee);
+
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("Dleted", true);
+
+        return ResponseEntity.ok(response);
     }
 
 }
