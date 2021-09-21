@@ -1,5 +1,6 @@
 package com.andrewsavich.bajter.cartridgerefillservice.controller;
 
+import com.andrewsavich.bajter.cartridgerefillservice.exception.LoginExistsException;
 import com.andrewsavich.bajter.cartridgerefillservice.model.employee.Employee;
 import com.andrewsavich.bajter.cartridgerefillservice.model.employee.Position;
 import com.andrewsavich.bajter.cartridgerefillservice.service.employee.EmployeeService;
@@ -31,9 +32,10 @@ public class EmployeeController {
 
     @PostMapping("/create")
     public void createEmployee(@RequestBody Employee employee){
-        System.out.println("got employee from front: " + employee);
 
-        employeeService.saveEmployee(employee);
+        throw new LoginExistsException("Employee with this login allreay exist!");
+
+        //employeeService.saveEmployee(employee);
     }
 
     @GetMapping("/{id}")
