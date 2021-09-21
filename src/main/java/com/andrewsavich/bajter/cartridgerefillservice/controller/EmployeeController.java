@@ -31,17 +31,16 @@ public class EmployeeController {
     }
 
     @PostMapping("/create")
-    public void createEmployee(@RequestBody Employee employee){
+    public void createEmployee(@RequestBody Employee employee) {
+        if (employeeService.isExistLogin(employee.getLogin())){
+            throw new LoginExistsException("Employee with this login allreay exist!");
+        }
 
-        throw new LoginExistsException("Employee with this login allreay exist!");
-
-        //employeeService.saveEmployee(employee);
+        employeeService.saveEmployee(employee);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id){
-        System.out.println("Get employee: " + id);
-        System.out.println("Got id from client: " + id);
         Employee employee = employeeService.getEmployeeById(id);
 
         return ResponseEntity.ok(employee);

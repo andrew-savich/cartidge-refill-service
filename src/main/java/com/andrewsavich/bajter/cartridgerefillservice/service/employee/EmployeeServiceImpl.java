@@ -35,7 +35,13 @@ public class EmployeeServiceImpl implements EmployeeService{
         employeeRepository.delete(employee);
     }
 
+    @Override
     public List<Position> getAllEmployeePositions(){
         return Arrays.asList(Position.values());
+    }
+
+    @Override
+    public boolean isExistLogin(String login){
+        return employeeRepository.findByLogin(login) != null ? true : false;
     }
 }
