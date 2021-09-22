@@ -24,4 +24,12 @@ public class Employee {
 
     @Enumerated(value = EnumType.STRING)
     private Position position;
+
+    public void updateFields(Employee employee){
+        this.setLogin(employee.getLogin());
+        this.setFirstName(employee.getFirstName());
+        this.setLastName(employee.getLastName());
+        this.setPassword(employee.getPassword());
+        this.setPosition(employee.getPosition());
+    }
 }

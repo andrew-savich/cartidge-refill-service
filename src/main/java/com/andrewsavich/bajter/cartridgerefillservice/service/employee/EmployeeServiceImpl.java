@@ -41,7 +41,29 @@ public class EmployeeServiceImpl implements EmployeeService{
     }
 
     @Override
-    public boolean isExistLogin(String login){
-        return employeeRepository.findByLogin(login) != null ? true : false;
+    public boolean isExistSameLogin (Employee checkingEmployee){
+        Employee existingEmployee = employeeRepository.findByLogin(checkingEmployee.getLogin());
+
+        //case for the creating a new checkingEmployee without existing same login in the DB
+        if(checkingEmployee.getId() == null){
+            if(existingEmployee == null){
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        //case for the updating existing checkingEmployee
+        if(existingEmployee == null){
+            return false;
+        } else {
+            if(existingEmployee.getId() == checkingEmployee.getId()){
+                return false;
+            }
+        }
+
+        return true;
     }
+
+
 }

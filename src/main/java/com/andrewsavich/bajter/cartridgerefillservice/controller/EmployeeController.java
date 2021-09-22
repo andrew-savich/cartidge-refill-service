@@ -32,7 +32,7 @@ public class EmployeeController {
 
     @PostMapping("/create")
     public void createEmployee(@RequestBody Employee employee) {
-        if (employeeService.isExistLogin(employee.getLogin())){
+        if (employeeService.isExistSameLogin(employee)){
             throw new LoginExistsException("Employee with this login allreay exist!");
         }
 
@@ -47,16 +47,13 @@ public class EmployeeController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Employee> updateEmployee(@PathVariable Long id, @RequestBody Employee responseEmployee){
-        System.out.println("Update employee: " + id);
-
+    public ResponseEntity<Employee> updateEmployee(@PathVariable Long id, @RequestBody Employee changedEmployee){
         Employee employee = employeeService.getEmployeeById(id);
+        employee.updateFields(changedEmployee);
 
-        employee.setFirstName(responseEmployee.getFirstName());
-        employee.setLastName(responseEmployee.getLastName());
-        employee.setLogin(responseEmployee.getLogin());
-        employee.setPassword(responseEmployee.getPassword());
-        employee.setPosition(responseEmployee.getPosition());
+        if(employeeService.isExistSameLogin(employee)){
+            throw new LoginExistsException("Employee with this login allreay exist!");
+        }
 
         Employee updatedEmployee = employeeService.saveEmployee(employee);
 
@@ -65,7 +62,6 @@ public class EmployeeController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Map<String, Boolean>> deleteEmployee(@PathVariable Long id){
-        System.out.println("Delete employee: " + id);
         Employee employee = employeeService.getEmployeeById(id);
 
         employeeService.deleteEmployee(employee);

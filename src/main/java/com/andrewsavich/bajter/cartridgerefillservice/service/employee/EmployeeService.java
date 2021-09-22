@@ -11,5 +11,5 @@ public interface EmployeeService {
     Employee saveEmployee(Employee employee);
     void deleteEmployee(Employee employee);
     List<Position> getAllEmployeePositions();
-    boolean isExistLogin(String login);
+    boolean isExistSameLogin(Employee employee);
 }
