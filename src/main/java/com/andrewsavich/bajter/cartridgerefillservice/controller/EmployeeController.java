@@ -67,7 +67,7 @@ public class EmployeeController {
         employeeService.deleteEmployee(employee);
 
         Map<String, Boolean> response = new HashMap<>();
-        response.put("Dleted", true);
+        response.put("Deleted", true);
 
         return ResponseEntity.ok(response);
     }
