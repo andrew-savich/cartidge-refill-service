@@ -35,7 +35,6 @@ public class EmployeeController {
 
     @PostMapping("/create")
     public void createEmployee(@Valid @RequestBody Employee employee) {
-        System.out.println("got employee: " + employee);
 
         if (employeeService.isExistSameLogin(employee)){
             throw new LoginExistsException("Employee with this login allreay exist!");

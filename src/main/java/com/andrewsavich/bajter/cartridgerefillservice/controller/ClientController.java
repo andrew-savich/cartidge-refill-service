@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000/")
@@ -27,7 +28,13 @@ public class ClientController {
     public ResponseEntity<Client> getEmployeeById(@PathVariable Long id){
         Client client = clientService.getClientById(id);
 
-        return ResponseEntity.ok(client)
-;    }
+        return ResponseEntity.ok(client);
+    }
+
+    @PostMapping("/create")
+    public void createClient(@RequestBody Client client){
+        System.out.println("got quest client: " + client);
+        clientService.saveClient(client);
+    }
 
 }
