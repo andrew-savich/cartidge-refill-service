@@ -1,6 +1,6 @@
 package com.andrewsavich.bajter.cartridgerefillservice.service.employee;
 
-import com.andrewsavich.bajter.cartridgerefillservice.dao.EmployeeRepository;
+import com.andrewsavich.bajter.cartridgerefillservice.repository.EmployeeRepository;
 import com.andrewsavich.bajter.cartridgerefillservice.model.employee.Employee;
 import com.andrewsavich.bajter.cartridgerefillservice.model.employee.Position;
 import org.springframework.beans.factory.annotation.Autowired;
