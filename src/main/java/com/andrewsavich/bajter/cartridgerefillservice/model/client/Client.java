@@ -25,8 +25,7 @@ public class Client {
     private Long id;
 
     @NotNull
-    @Size(min = 2, max = 3)
-    @Pattern(regexp = "^[а-яА-Яa-zA-Z]*$")
+    @Size(min = 2, max = 30)
     private String name;
 
     private String contact;
