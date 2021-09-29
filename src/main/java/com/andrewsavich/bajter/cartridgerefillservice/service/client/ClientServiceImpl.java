@@ -2,7 +2,6 @@ package com.andrewsavich.bajter.cartridgerefillservice.service.client;
 
 import com.andrewsavich.bajter.cartridgerefillservice.model.client.Client;
 import com.andrewsavich.bajter.cartridgerefillservice.repository.ClientRepository;
-import com.andrewsavich.bajter.cartridgerefillservice.service.employee.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
