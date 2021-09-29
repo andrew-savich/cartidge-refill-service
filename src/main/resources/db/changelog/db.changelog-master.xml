@@ -12,6 +12,7 @@ http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">
     </changeSet>
 
     <include file="v-1.0/db.changelog-v.1.0.xml" relativeToChangelogFile="true" />
+    <include file="v-2.0/db.changelog-v.2.0.xml" relativeToChangelogFile="true" />
 
     <changeSet id="1" author="AndrewSav">
         <tagDatabase tag="v.1.0" />
