@@ -24,7 +24,7 @@ public class ClientController {
         return clientService.getAllClients();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/get/{id}")
     public ResponseEntity<Client> getEmployeeById(@PathVariable Long id){
         Client client = clientService.getClientById(id);
 
@@ -35,6 +35,15 @@ public class ClientController {
     public void createClient(@RequestBody Client client){
         System.out.println("got quest client: " + client);
         clientService.saveClient(client);
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Client> updateClient(@RequestBody Client changedClient, @PathVariable Long id){
+        Client client = clientService.getClientById(id);
+        client.update(changedClient);
+
+        Client updatedClient = clientService.saveClient(client);
+        return ResponseEntity.ok(updatedClient);
     }
 
 }
