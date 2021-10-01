@@ -1,6 +1,7 @@
 package com.andrewsavich.bajter.cartridgerefillservice.service.client;
 
 import com.andrewsavich.bajter.cartridgerefillservice.model.client.Client;
+import com.andrewsavich.bajter.cartridgerefillservice.model.employee.Employee;
 import com.andrewsavich.bajter.cartridgerefillservice.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,7 +35,27 @@ public class ClientServiceImpl implements ClientService{
     }
 
     @Override
-    public boolean isExistClientName(Client client) {
-        return false;
+    public boolean isExistClientName(Client checkingClient) {
+        Client existingClient = clientRepository.findByName(checkingClient.getName());
+
+        //case for the creating a new checkingClient without existing same login in the DB
+        if(checkingClient.getId() == null){
+            if(existingClient == null){
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        //case for the updating existing checkingClient
+        if(existingClient == null){
+            return false;
+        } else {
+            if(existingClient.getId() == existingClient.getId()){
+                return false;
+            }
+        }
+
+        return true;
     }
 }
