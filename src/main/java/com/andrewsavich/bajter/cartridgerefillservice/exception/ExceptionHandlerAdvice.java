@@ -14,4 +14,10 @@ public class ExceptionHandlerAdvice {
                 .status(HttpStatus.CONFLICT)
                 .body(e.getMessage());
     }
+    @ExceptionHandler(ClientNameExistsException.class)
+    public ResponseEntity handleException(ClientNameExistsException e){
+        return ResponseEntity
+                .status(HttpStatus.CONFLICT)
+                .body(e.getMessage());
+    }
 }
