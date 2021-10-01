@@ -1,7 +1,6 @@
 package com.andrewsavich.bajter.cartridgerefillservice.service.client;
 
 import com.andrewsavich.bajter.cartridgerefillservice.model.client.Client;
-import com.andrewsavich.bajter.cartridgerefillservice.model.employee.Employee;
 import com.andrewsavich.bajter.cartridgerefillservice.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,7 +50,7 @@ public class ClientServiceImpl implements ClientService{
         if(existingClient == null){
             return false;
         } else {
-            if(existingClient.getId() == existingClient.getId()){
+            if(existingClient.getId() == checkingClient.getId()){
                 return false;
             }
         }
