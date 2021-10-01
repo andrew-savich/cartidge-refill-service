@@ -2,13 +2,16 @@ package com.andrewsavich.bajter.cartridgerefillservice.controller;
 
 import com.andrewsavich.bajter.cartridgerefillservice.exception.ClientNameExistsException;
 import com.andrewsavich.bajter.cartridgerefillservice.model.client.Client;
+import com.andrewsavich.bajter.cartridgerefillservice.model.employee.Employee;
 import com.andrewsavich.bajter.cartridgerefillservice.service.client.ClientService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin(origins = "http://localhost:3000/")
 @RestController
@@ -52,6 +55,17 @@ public class ClientController {
 
         Client updatedClient = clientService.saveClient(client);
         return ResponseEntity.ok(updatedClient);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Map<String, Boolean>> deleteClient(@PathVariable Long id){
+        Client client = clientService.getClientById(id);
+        clientService.deleteClient(client);
+
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("Deleted", true);
+
+        return ResponseEntity.ok(response);
     }
 
 }
