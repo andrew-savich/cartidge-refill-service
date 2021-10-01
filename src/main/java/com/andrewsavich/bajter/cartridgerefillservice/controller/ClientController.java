@@ -37,7 +37,7 @@ public class ClientController {
     public void createClient(@RequestBody Client client){
 
         if(clientService.isExistClientName(client)){
-            throw new ClientNameExistsException("Client with " + client.getName() + " already exist");
+            throw new ClientNameExistsException("Client with name" + client.getName() + " already exist");
         }
 
         clientService.saveClient(client);
@@ -49,7 +49,7 @@ public class ClientController {
         client.update(changedClient);
 
         if(clientService.isExistClientName(client)){
-            throw new ClientNameExistsException("Client with " + client.getName() + " already exist");
+            throw new ClientNameExistsException("Client with name " + client.getName() + " already exist");
         }
 
         Client updatedClient = clientService.saveClient(client);
@@ -66,5 +66,4 @@ public class ClientController {
 
         return ResponseEntity.ok(response);
     }
-
 }
