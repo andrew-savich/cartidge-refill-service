@@ -43,14 +43,14 @@ public class EmployeeController {
         employeeService.saveEmployee(employee);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/get/{id}")
     public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id){
         Employee employee = employeeService.getEmployeeById(id);
 
         return ResponseEntity.ok(employee);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<Employee> updateEmployee(@PathVariable Long id, @Valid @RequestBody Employee changedEmployee){
         Employee employee = employeeService.getEmployeeById(id);
         employee.updateFields(changedEmployee);
@@ -64,7 +64,7 @@ public class EmployeeController {
         return ResponseEntity.ok(updatedEmployee);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Map<String, Boolean>> deleteEmployee(@PathVariable Long id){
         Employee employee = employeeService.getEmployeeById(id);
 
