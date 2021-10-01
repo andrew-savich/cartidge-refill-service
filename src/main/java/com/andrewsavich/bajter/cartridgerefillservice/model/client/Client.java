@@ -31,4 +31,10 @@ public class Client {
 
     //@Max(400)
     private String description;
+
+    public void update(Client changedClient) {
+        this.setName(changedClient.getName());
+        this.setContact(changedClient.getContact());
+        this.setDescription(changedClient.getDescription());
+    }
 }
