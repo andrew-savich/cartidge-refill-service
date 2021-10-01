@@ -4,8 +4,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(value = HttpStatus.CONFLICT)
-public class LoginExistsException extends RuntimeException{
-    public LoginExistsException(String message) {
+public class EmployeeLoginExistsException extends RuntimeException{
+    public EmployeeLoginExistsException(String message) {
         super(message);
     }
 }

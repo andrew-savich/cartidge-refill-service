@@ -1,6 +1,6 @@
 package com.andrewsavich.bajter.cartridgerefillservice.controller;
 
-import com.andrewsavich.bajter.cartridgerefillservice.exception.LoginExistsException;
+import com.andrewsavich.bajter.cartridgerefillservice.exception.EmployeeLoginExistsException;
 import com.andrewsavich.bajter.cartridgerefillservice.model.employee.Employee;
 import com.andrewsavich.bajter.cartridgerefillservice.model.employee.Position;
 import com.andrewsavich.bajter.cartridgerefillservice.service.employee.EmployeeService;
@@ -37,7 +37,7 @@ public class EmployeeController {
     public void createEmployee(@Valid @RequestBody Employee employee) {
 
         if (employeeService.isExistSameLogin(employee)){
-            throw new LoginExistsException("Employee with this login allreay exist!");
+            throw new EmployeeLoginExistsException("Employee with this login allreay exist!");
         }
 
         employeeService.saveEmployee(employee);
@@ -56,7 +56,7 @@ public class EmployeeController {
         employee.updateFields(changedEmployee);
 
         if(employeeService.isExistSameLogin(employee)){
-            throw new LoginExistsException("Employee with this login allreay exist!");
+            throw new EmployeeLoginExistsException("Employee with this login allreay exist!");
         }
 
         Employee updatedEmployee = employeeService.saveEmployee(employee);

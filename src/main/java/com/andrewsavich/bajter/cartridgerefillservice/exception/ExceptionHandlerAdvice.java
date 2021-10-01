@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class ExceptionHandlerAdvice {
 
-    @ExceptionHandler(LoginExistsException.class)
-    public ResponseEntity handleException(LoginExistsException e){
+    @ExceptionHandler(EmployeeLoginExistsException.class)
+    public ResponseEntity handleException(EmployeeLoginExistsException e){
         return ResponseEntity
                 .status(HttpStatus.CONFLICT)
                 .body(e.getMessage());
