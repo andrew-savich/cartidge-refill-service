@@ -15,7 +15,7 @@ import java.util.List;
 @ToString
 @EqualsAndHashCode
 @Entity
-public class Groupe {
+public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -23,7 +23,7 @@ public class Model {
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
-    private Groupe grope;
+    private Group group;
 
     @NotNull
     @Enumerated(value = EnumType.STRING)
