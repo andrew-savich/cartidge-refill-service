@@ -1,5 +1,6 @@
 package com.andrewsavich.bajter.cartridgerefillservice.model.cartridge;
 
+import com.andrewsavich.bajter.cartridgerefillservice.model.client.Client;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -26,5 +27,10 @@ public class Group {
     private String description;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "group", cascade = CascadeType.MERGE)
-    private List<Model> models = new ArrayList<>();
+    private List<Model> models;
+
+    public void update(Group changedGroup){
+        this.setTitle(changedGroup.getTitle());
+        this.setDescription(changedGroup.getDescription());
+    }
 }
