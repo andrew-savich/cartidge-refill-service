@@ -1,6 +1,6 @@
 package com.andrewsavich.bajter.cartridgerefillservice.controller;
 
-import com.andrewsavich.bajter.cartridgerefillservice.model.cartridge.Group;
+import com.andrewsavich.bajter.cartridgerefillservice.model.cartridge.CartridgeGroup;
 import com.andrewsavich.bajter.cartridgerefillservice.service.group.GroupService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,36 +21,36 @@ public class GroupController {
     private GroupService groupService;
 
     @GetMapping("/all")
-    public List<Group> getGroupList(){
+    public List<CartridgeGroup> getGroupList(){
         return groupService.getAllGroups();
     }
 
     @GetMapping("/get/{id}")
-    public ResponseEntity<Group> getGroupById(@PathVariable Long id){
-        Group group = groupService.getGroupById(id);
+    public ResponseEntity<CartridgeGroup> getGroupById(@PathVariable Long id){
+        CartridgeGroup cartridgeGroup = groupService.getGroupById(id);
 
-        return ResponseEntity.ok(group);
+        return ResponseEntity.ok(cartridgeGroup);
     }
 
     @PostMapping("/create")
-    public void createGroup(@RequestBody Group group){
-        groupService.saveGroup(group);
+    public void createGroup(@RequestBody CartridgeGroup cartridgeGroup){
+        groupService.saveGroup(cartridgeGroup);
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Group> updateGroup(@RequestBody Group changedGroup, @PathVariable Long id){
-        Group group = groupService.getGroupById(id);
-        group.update(changedGroup);
+    public ResponseEntity<CartridgeGroup> updateGroup(@RequestBody CartridgeGroup changedCartridgeGroup, @PathVariable Long id){
+        CartridgeGroup cartridgeGroup = groupService.getGroupById(id);
+        cartridgeGroup.update(changedCartridgeGroup);
 
-        Group updatedGroup = groupService.saveGroup(group);
+        CartridgeGroup updatedCartridgeGroup = groupService.saveGroup(cartridgeGroup);
 
-        return ResponseEntity.ok(updatedGroup);
+        return ResponseEntity.ok(updatedCartridgeGroup);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Map<String, Boolean>> deleteGroup(@PathVariable Long id){
-        Group group = groupService.getGroupById(id);
-        groupService.deleteGroup(group);
+        CartridgeGroup cartridgeGroup = groupService.getGroupById(id);
+        groupService.deleteGroup(cartridgeGroup);
 
         Map<String,Boolean> response = new HashMap<>();
         response.put("Deleted", true);

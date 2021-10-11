@@ -9,7 +9,7 @@ http://www.liquibase.org/xml/ns/pro
 http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">
 
     <changeSet id="3.0.01" author="AndrewSav">
-        <createTable tableName="group">
+        <createTable tableName="cartridgeGroup">
             <column  name="id"  type="int">
                 <constraints  primaryKey="true"  nullable="false"/>
             </column>

@@ -10,7 +10,7 @@ http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">
 
     <changeSet id="4.0.02" author="AndrewSav">
         <renameColumn  catalogName="cartridge-refill-service"
-                       newColumnName="group"
+                       newColumnName="cartridgeGroup"
                        oldColumnName="groupe"
                        schemaName="public"
                        tableName="model"/>

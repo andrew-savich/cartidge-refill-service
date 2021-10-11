@@ -9,6 +9,6 @@ http://www.liquibase.org/xml/ns/pro
 http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">
 
     <include file="01-changeset-model-create-table.xml" relativeToChangelogFile="true" />
-    <include file="02-changeset-model-rename-column-group.xml" relativeToChangelogFile="true" />
+    <include file="02-changeset-model-rename-column-cartridgeGroup.xml" relativeToChangelogFile="true" />
 
 </databaseChangeLog>

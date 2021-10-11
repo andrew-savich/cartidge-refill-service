@@ -23,7 +23,7 @@ public class Model {
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
-    private Group group;
+    private CartridgeGroup cartridgeGroup;
 
     @NotNull
     @Enumerated(value = EnumType.STRING)
