@@ -24,7 +24,7 @@ public class CartridgeGroup {
 
     private String description;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "group", cascade = CascadeType.MERGE)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "cartridgeGroup", cascade = CascadeType.MERGE)
     private List<Model> models;
 
     public void update(CartridgeGroup changedCartridgeGroup){
