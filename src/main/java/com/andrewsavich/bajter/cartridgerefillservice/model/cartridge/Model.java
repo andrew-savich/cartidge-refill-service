@@ -39,6 +39,10 @@ public class Model {
     @Column(name = "color")
     private Color color;
 
+    @Column(name = "default_grams")
+    @Size(min = 0, max = 1000)
+    private Short defaultGrams;
+
     @Column(name = "description")
     private String description;
 }
