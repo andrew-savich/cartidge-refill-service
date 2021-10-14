@@ -46,7 +46,7 @@ public class ClientController {
     @PutMapping("/update/{id}")
     public ResponseEntity<Client> updateClient(@RequestBody Client changedClient, @PathVariable Long id){
         Client client = clientService.getClientById(id);
-        client.update(changedClient);
+        client.updateFields(changedClient);
 
         if(clientService.isExistClientName(client)){
             throw new ClientNameExistsException("Client with name " + client.getName() + " already exist");

@@ -8,7 +8,7 @@ http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd
 http://www.liquibase.org/xml/ns/pro
 http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">
 
-    <changeSet id="v-1.0-01-employees" author="AndrewSav">
+    <changeSet id="v-1.0-10-clients" author="AndrewSav">
         <sqlFile
                 dbms="postgresql"
                 encoding="utf8"
@@ -16,7 +16,7 @@ http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">
                 relativeToChangelogFile="true"
                 splitStatements="true"
                 stripComments="true"
-                path="01-create-employees-table.sql"
+                path="10-create-clients-table.sql"
         />
 
         <rollback>
@@ -27,13 +27,14 @@ http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">
                     relativeToChangelogFile="true"
                     splitStatements="true"
                     stripComments="true"
-                    path="01-drop-employees-table.sql"
+                    path="10-drop-clients-table.sql"
             />
         </rollback>
     </changeSet>
 
-    <changeSet id="v-1.0.01employees-tag" author="">
-        <tagDatabase tag="create_employees_table" />
+    <changeSet id="v-1.0-10-clients-tag" author="">
+        <tagDatabase tag="create_clients_table" />
     </changeSet>
+
 
 </databaseChangeLog>
