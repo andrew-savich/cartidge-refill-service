@@ -7,6 +7,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Data
@@ -14,21 +15,26 @@ import java.util.List;
 @ToString
 @EqualsAndHashCode
 @Entity
-public class CartridgeGroup {
+@Table(name = "groups")
+public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
+    @Size(min = 2, max = 30)
+    @Column(name = "title")
     private String title;
 
+    @Column(name = "description")
     private String description;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "cartridgeGroup", cascade = CascadeType.MERGE)
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "group", cascade = CascadeType.MERGE)
     private List<Model> models;
 
-    public void update(CartridgeGroup changedCartridgeGroup){
-        this.setTitle(changedCartridgeGroup.getTitle());
-        this.setDescription(changedCartridgeGroup.getDescription());
+    public void update(Group changedGroup){
+        this.setTitle(changedGroup.getTitle());
+        this.setDescription(changedGroup.getDescription());
     }
 }

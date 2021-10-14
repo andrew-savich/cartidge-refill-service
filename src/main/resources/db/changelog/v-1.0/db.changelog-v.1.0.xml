@@ -10,5 +10,7 @@ http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">
 
     <include file="01-changeset-employees.xml" relativeToChangelogFile="true" />
     <include file="10-changeset-clients.xml" relativeToChangelogFile="true" />
+    <include file="20-changeset-groups.xml" relativeToChangelogFile="true" />
+    <include file="30-changeset-models.xml" relativeToChangelogFile="true" />
 
 </databaseChangeLog>

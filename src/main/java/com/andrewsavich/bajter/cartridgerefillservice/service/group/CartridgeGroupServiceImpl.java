@@ -1,6 +1,6 @@
 package com.andrewsavich.bajter.cartridgerefillservice.service.group;
 
-import com.andrewsavich.bajter.cartridgerefillservice.model.cartridge.CartridgeGroup;
+import com.andrewsavich.bajter.cartridgerefillservice.model.cartridge.Group;
 import com.andrewsavich.bajter.cartridgerefillservice.repository.CartridgeGroupRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,27 +14,27 @@ public class CartridgeGroupServiceImpl implements CartridgeGroupService {
     private CartridgeGroupRepository cartridgeGroupRepository;
 
     @Override
-    public List<CartridgeGroup> getAllCartridgeGroups() {
+    public List<Group> getAllCartridgeGroups() {
         return cartridgeGroupRepository.findAll();
     }
 
     @Override
-    public CartridgeGroup getCartridgeGroupById(Long id) {
+    public Group getCartridgeGroupById(Long id) {
         return cartridgeGroupRepository.findById(id).get();
     }
 
     @Override
-    public CartridgeGroup saveCartridgeGroup(CartridgeGroup cartridgeGroup) {
-        return cartridgeGroupRepository.save(cartridgeGroup);
+    public Group saveCartridgeGroup(Group group) {
+        return cartridgeGroupRepository.save(group);
     }
 
     @Override
-    public void deleteCartridgeGroup(CartridgeGroup cartridgeGroup) {
-        cartridgeGroupRepository.delete(cartridgeGroup);
+    public void deleteCartridgeGroup(Group group) {
+        cartridgeGroupRepository.delete(group);
     }
 
     @Override
-    public boolean isExistCartridgeGroupTitle(CartridgeGroup cartridgeGroup) {
+    public boolean isExistCartridgeGroupTitle(Group group) {
         return false;
     }
 }

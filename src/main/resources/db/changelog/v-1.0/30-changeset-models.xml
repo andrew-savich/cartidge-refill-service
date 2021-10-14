@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd
+http://www.liquibase.org/xml/ns/pro
+http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">
+
+    <changeSet id="v-1.0-30-models" author="AndrewSav">
+        <sqlFile
+                dbms="postgresql"
+                encoding="utf8"
+                endDelimiter="\nGO"
+                relativeToChangelogFile="true"
+                splitStatements="true"
+                stripComments="true"
+                path="30-create-models-table.sql"
+        />
+
+        <rollback>
+            <sqlFile
+                    dbms="postgresql"
+                    encoding="utf8"
+                    endDelimiter="\nGO"
+                    relativeToChangelogFile="true"
+                    splitStatements="true"
+                    stripComments="true"
+                    path="30-drop-models-table.sql"
+            />
+        </rollback>
+    </changeSet>
+
+    <changeSet id="v-1.0-30-models-tag" author="">
+        <tagDatabase tag="create_models_table" />
+    </changeSet>
+
+
+</databaseChangeLog>
