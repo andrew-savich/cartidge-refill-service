@@ -37,7 +37,7 @@ public class ClientServiceImpl implements ClientService{
     public boolean isExistClientName(Client checkingClient) {
         Client existingClient = clientRepository.findByName(checkingClient.getName());
 
-        //case for the creating a new checkingClient without existing same login in the DB
+        //case for the creating a new checkingClient without existing same name in the DB
         if(checkingClient.getId() == null){
             if(existingClient == null){
                 return false;
