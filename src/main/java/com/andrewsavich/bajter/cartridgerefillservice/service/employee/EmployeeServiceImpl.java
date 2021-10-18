@@ -46,23 +46,15 @@ public class EmployeeServiceImpl implements EmployeeService{
 
         //case for the creating a new checkingEmployee without existing same login in the DB
         if(checkingEmployee.getId() == null){
-            if(existingEmployee == null){
-                return false;
-            } else {
-                return true;
-            }
+            return existingEmployee != null;
         }
 
         //case for the updating existing checkingEmployee
         if(existingEmployee == null){
             return false;
         } else {
-            if(existingEmployee.getId() == checkingEmployee.getId()){
-                return false;
-            }
+            return existingEmployee.getId() != checkingEmployee.getId();
         }
-
-        return true;
     }
 
 

@@ -39,22 +39,14 @@ public class ClientServiceImpl implements ClientService{
 
         //case for the creating a new checkingClient without existing same name in the DB
         if(checkingClient.getId() == null){
-            if(existingClient == null){
-                return false;
-            } else {
-                return true;
-            }
+            return existingClient != null;
         }
 
         //case for the updating existing checkingClient
         if(existingClient == null){
             return false;
         } else {
-            if(existingClient.getId() == checkingClient.getId()){
-                return false;
-            }
+            return existingClient.getId() != checkingClient.getId();
         }
-
-        return true;
     }
 }

@@ -39,22 +39,14 @@ public class GroupServiceImpl implements GroupService {
 
         //case for the creating a new checkingGroup without existing same title in the DB
         if(checkingGroup.getId() == null){
-            if(existingGroup == null){
-                return false;
-            } else {
-                return true;
-            }
+            return existingGroup != null;
         }
 
         //case for the updating existing checkingGroup
         if(existingGroup == null){
             return false;
         } else {
-            if(existingGroup.getId() == checkingGroup.getId()){
-                return false;
-            }
+            return existingGroup.getId() != checkingGroup.getId();
         }
-
-        return true;
     }
 }
