@@ -1,7 +1,8 @@
 package com.andrewsavich.bajter.cartridgerefillservice.controller;
 
+import com.andrewsavich.bajter.cartridgerefillservice.exception.GroupTitleExistsException;
 import com.andrewsavich.bajter.cartridgerefillservice.model.cartridge.Group;
-import com.andrewsavich.bajter.cartridgerefillservice.service.group.CartridgeGroupService;
+import com.andrewsavich.bajter.cartridgerefillservice.service.group.GroupService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,44 +14,49 @@ import java.util.Map;
 
 @CrossOrigin(origins = "http://localhost:3000/")
 @RestController
-@RequestMapping("/cartridge-group")
+@RequestMapping("/group")
 @Slf4j
-public class CartridgeGroupController {
+public class GroupController {
 
     @Autowired
-    private CartridgeGroupService cartridgeGroupService;
+    private GroupService groupService;
 
     @GetMapping("/all")
     public List<Group> getCartridgeGroupList(){
-        return cartridgeGroupService.getAllCartridgeGroups();
+        return groupService.getAllGroups();
     }
 
     @GetMapping("/get/{id}")
     public ResponseEntity<Group> getGroupById(@PathVariable Long id){
-        Group group = cartridgeGroupService.getCartridgeGroupById(id);
+        Group group = groupService.getGroupById(id);
 
         return ResponseEntity.ok(group);
     }
 
     @PostMapping("/create")
     public void createGroup(@RequestBody Group group){
-        cartridgeGroupService.saveCartridgeGroup(group);
+
+        if(groupService.isExistGroupTitle(group)){
+            throw new GroupTitleExistsException("Group with title '" + group.getTitle() + "' is exist");
+        }
+
+        groupService.saveGroup(group);
     }
 
     @PutMapping("/update/{id}")
     public ResponseEntity<Group> updateGroup(@RequestBody Group changedGroup, @PathVariable Long id){
-        Group group = cartridgeGroupService.getCartridgeGroupById(id);
+        Group group = groupService.getGroupById(id);
         group.update(changedGroup);
 
-        Group updatedGroup = cartridgeGroupService.saveCartridgeGroup(group);
+        Group updatedGroup = groupService.saveGroup(group);
 
         return ResponseEntity.ok(updatedGroup);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Map<String, Boolean>> deleteGroup(@PathVariable Long id){
-        Group group = cartridgeGroupService.getCartridgeGroupById(id);
-        cartridgeGroupService.deleteCartridgeGroup(group);
+        Group group = groupService.getGroupById(id);
+        groupService.deleteGroup(group);
 
         Map<String,Boolean> response = new HashMap<>();
         response.put("Deleted", true);

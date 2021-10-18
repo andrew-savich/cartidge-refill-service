@@ -21,4 +21,11 @@ public class ExceptionHandlerAdvice {
                 .status(HttpStatus.CONFLICT)
                 .body(e.getMessage());
     }
+
+    @ExceptionHandler(GroupTitleExistsException.class)
+    public ResponseEntity handleException(GroupTitleExistsException e){
+        return ResponseEntity
+                .status(HttpStatus.CONFLICT)
+                .body(e.getMessage());
+    }
 }
