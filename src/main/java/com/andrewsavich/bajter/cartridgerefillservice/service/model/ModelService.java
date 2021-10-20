@@ -10,4 +10,5 @@ public interface ModelService {
     Model saveModel(Model model);
     void deleteModel(Model model);
     boolean isExistModelTitle(Model model);
+    void updateFields(Model oldModel, Model newModel);
 }

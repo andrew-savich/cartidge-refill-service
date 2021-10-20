@@ -50,4 +50,14 @@ public class ModelServiceImpl implements ModelService{
         }
 
     }
+
+    @Override
+    public void updateFields(Model oldModel, Model newModel){
+        oldModel.setTitle(newModel.getTitle());
+        oldModel.setGroup(newModel.getGroup());
+        oldModel.setType(newModel.getType());
+        oldModel.setColor(newModel.getColor());
+        oldModel.setDefaultGrams(newModel.getDefaultGrams());
+        oldModel.setDescription((newModel.getDescription()));
+    }
 }
