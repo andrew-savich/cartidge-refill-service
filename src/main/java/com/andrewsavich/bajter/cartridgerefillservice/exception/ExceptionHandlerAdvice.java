@@ -28,4 +28,11 @@ public class ExceptionHandlerAdvice {
                 .status(HttpStatus.CONFLICT)
                 .body(e.getMessage());
     }
+
+    @ExceptionHandler(ModelTitleExistsException.class)
+    public ResponseEntity handleException(ModelTitleExistsException e){
+        return ResponseEntity
+                .status(HttpStatus.CONFLICT)
+                .body(e.getMessage());
+    }
 }
