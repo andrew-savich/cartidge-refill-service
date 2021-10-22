@@ -1,10 +1,13 @@
 package com.andrewsavich.bajter.cartridgerefillservice.service.model;
 
+import com.andrewsavich.bajter.cartridgerefillservice.model.cartridge.Color;
 import com.andrewsavich.bajter.cartridgerefillservice.model.cartridge.Model;
+import com.andrewsavich.bajter.cartridgerefillservice.model.cartridge.Type;
 import com.andrewsavich.bajter.cartridgerefillservice.repository.ModelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -59,5 +62,15 @@ public class ModelServiceImpl implements ModelService{
         oldModel.setColor(newModel.getColor());
         oldModel.setDefaultGrams(newModel.getDefaultGrams());
         oldModel.setDescription((newModel.getDescription()));
+    }
+
+    @Override
+    public List<Color> getAllColors(){
+        return Arrays.asList(Color.values());
+    }
+
+    @Override
+    public List<Type> getAllTypes(){
+        return Arrays.asList(Type.values());
     }
 }

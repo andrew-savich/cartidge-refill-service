@@ -1,18 +1,16 @@
 package com.andrewsavich.bajter.cartridgerefillservice.model.cartridge;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-@Data
-@NoArgsConstructor
-@ToString
-@EqualsAndHashCode
+
+@Getter
+@Setter
 @Entity
 @Table(name = "models")
 public class Model {
@@ -27,7 +25,7 @@ public class Model {
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "group_id", referencedColumnName="id")
+    @JoinColumn(name = "group_title", referencedColumnName="title")
     private Group group;
 
     @NotNull
@@ -40,7 +38,8 @@ public class Model {
     private Color color;
 
     @Column(name = "default_grams")
-    @Size(min = 0, max = 1000)
+    @Min(value = 0)
+    @Max(value = 1000)
     private Short defaultGrams;
 
     @Column(name = "description")

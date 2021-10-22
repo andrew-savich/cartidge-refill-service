@@ -8,6 +8,7 @@ import java.util.List;
 public interface GroupService {
     List<Group> getAllGroups();
     Group getGroupById(Long id);
+    Group getGroupByTitle(String title);
     Group saveGroup(Group group);
     void deleteGroup(Group group);
     boolean isExistGroupTitle(Group group);

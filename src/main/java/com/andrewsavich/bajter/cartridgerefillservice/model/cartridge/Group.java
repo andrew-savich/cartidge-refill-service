@@ -1,36 +1,34 @@
 package com.andrewsavich.bajter.cartridgerefillservice.model.cartridge;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.List;
 
-@Data
-@NoArgsConstructor
-@ToString
-@EqualsAndHashCode
+
+@Getter
+@Setter
 @Entity
 @Table(name = "groups")
-public class Group {
+public class Group implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
     @Size(min = 2, max = 30)
-    @Column(name = "title")
+    @Column(name = "title", unique = true)
     private String title;
 
     @Column(name = "description")
     private String description;
 
-
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "group", cascade = CascadeType.MERGE)
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "group", cascade = CascadeType.MERGE)
     private List<Model> models;
 
     public void update(Group changedGroup){

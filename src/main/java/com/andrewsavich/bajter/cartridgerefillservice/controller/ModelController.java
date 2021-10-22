@@ -1,7 +1,11 @@
 package com.andrewsavich.bajter.cartridgerefillservice.controller;
 
 import com.andrewsavich.bajter.cartridgerefillservice.exception.ModelTitleExistsException;
+import com.andrewsavich.bajter.cartridgerefillservice.model.cartridge.Color;
+import com.andrewsavich.bajter.cartridgerefillservice.model.cartridge.Group;
 import com.andrewsavich.bajter.cartridgerefillservice.model.cartridge.Model;
+import com.andrewsavich.bajter.cartridgerefillservice.model.cartridge.Type;
+import com.andrewsavich.bajter.cartridgerefillservice.service.group.GroupService;
 import com.andrewsavich.bajter.cartridgerefillservice.service.model.ModelService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +35,16 @@ public class ModelController {
         Model model = modelService.getModelById(id);
 
         return ResponseEntity.ok(model);
+    }
+
+    @GetMapping("/colors")
+    public List<Color> getColors(){
+        return modelService.getAllColors();
+    }
+
+    @GetMapping("/types")
+    public List<Type> getTypes(){
+        return modelService.getAllTypes();
     }
 
     @PostMapping("/create")
