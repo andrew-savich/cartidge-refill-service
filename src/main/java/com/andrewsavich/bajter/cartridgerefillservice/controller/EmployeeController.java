@@ -53,7 +53,7 @@ public class EmployeeController {
     @PutMapping("/update/{id}")
     public ResponseEntity<Employee> updateEmployee(@PathVariable Long id, @Valid @RequestBody Employee changedEmployee){
         Employee employee = employeeService.getEmployeeById(id);
-        employee.updateFields(changedEmployee);
+        employeeService.updateFields(employee, changedEmployee);
 
         if(employeeService.isExistSameLogin(employee)){
             throw new EmployeeLoginExistsException("Employee with this login allreay exist!");

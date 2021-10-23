@@ -12,4 +12,5 @@ public interface EmployeeService {
     void deleteEmployee(Employee employee);
     List<Position> getAllEmployeePositions();
     boolean isExistSameLogin(Employee employee);
+    void updateFields(Employee oldEmployee, Employee newEmployee);
 }

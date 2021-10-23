@@ -24,7 +24,7 @@ public class Model {
     private String title;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "group_title", referencedColumnName="title")
     private Group group;
 

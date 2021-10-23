@@ -13,9 +13,6 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "clients")
 @Data
-@NoArgsConstructor
-@EqualsAndHashCode
-@ToString
 public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,9 +29,4 @@ public class Client {
     @Column(name = "description")
     private String description;
 
-    public void updateFields(Client changedClient) {
-        this.setName(changedClient.getName());
-        this.setContact(changedClient.getContact());
-        this.setDescription(changedClient.getDescription());
-    }
 }

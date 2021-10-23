@@ -9,9 +9,7 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.List;
 
-
-@Getter
-@Setter
+@Data
 @Entity
 @Table(name = "groups")
 public class Group implements Serializable {
@@ -31,8 +29,4 @@ public class Group implements Serializable {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "group", cascade = CascadeType.MERGE)
     private List<Model> models;
 
-    public void update(Group changedGroup){
-        this.setTitle(changedGroup.getTitle());
-        this.setDescription(changedGroup.getDescription());
-    }
 }

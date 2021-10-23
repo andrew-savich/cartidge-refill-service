@@ -14,9 +14,6 @@ import java.util.Date;
 @Entity
 @Table(name = "cartridges")
 @Data
-@NoArgsConstructor
-@ToString
-@EqualsAndHashCode
 public class Cartridge {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,7 +35,7 @@ public class Cartridge {
     private Model model;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "client_id", referencedColumnName="id")
     private Client client;
 

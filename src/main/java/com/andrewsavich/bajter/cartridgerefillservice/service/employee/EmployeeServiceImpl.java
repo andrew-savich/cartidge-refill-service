@@ -57,5 +57,13 @@ public class EmployeeServiceImpl implements EmployeeService{
         }
     }
 
+    @Override
+    public void updateFields(Employee oldEmployee, Employee newEmployee) {
+        oldEmployee.setLogin(newEmployee.getLogin());
+        oldEmployee.setFirstName(newEmployee.getFirstName());
+        oldEmployee.setLastName((newEmployee.getLastName()));
+        oldEmployee.setPassword(newEmployee.getPassword());
+        oldEmployee.setPosition(newEmployee.getPosition());
+    }
 
 }

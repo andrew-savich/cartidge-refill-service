@@ -10,4 +10,5 @@ public interface ClientService {
     Client saveClient(Client client);
     void deleteClient(Client client);
     boolean isExistClientName(Client client);
+    void updateFields(Client oldClient, Client newClient);
 }

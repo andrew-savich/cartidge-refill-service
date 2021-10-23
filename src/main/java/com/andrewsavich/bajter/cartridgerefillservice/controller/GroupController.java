@@ -46,7 +46,7 @@ public class GroupController {
     @PutMapping("/update/{id}")
     public ResponseEntity<Group> updateGroup(@RequestBody Group changedGroup, @PathVariable Long id){
         Group group = groupService.getGroupById(id);
-        group.update(changedGroup);
+        groupService.updateFields(group, changedGroup);
 
         Group updatedGroup = groupService.saveGroup(group);
 

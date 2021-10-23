@@ -54,4 +54,10 @@ public class GroupServiceImpl implements GroupService {
             return existingGroup.getId() != checkingGroup.getId();
         }
     }
+
+    @Override
+    public void updateFields(Group oldGroup, Group newGroup) {
+        oldGroup.setTitle(newGroup.getTitle());
+        oldGroup.setDescription(newGroup.getDescription());
+    }
 }

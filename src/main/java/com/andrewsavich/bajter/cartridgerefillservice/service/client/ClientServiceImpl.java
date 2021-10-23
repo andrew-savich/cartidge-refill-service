@@ -49,4 +49,11 @@ public class ClientServiceImpl implements ClientService{
             return existingClient.getId() != checkingClient.getId();
         }
     }
+
+    @Override
+    public void updateFields(Client oldClient, Client newClient) {
+        oldClient.setName(newClient.getName());
+        oldClient.setContact(newClient.getContact());
+        oldClient.setDescription(newClient.getDescription());
+    }
 }

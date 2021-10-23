@@ -12,4 +12,5 @@ public interface GroupService {
     Group saveGroup(Group group);
     void deleteGroup(Group group);
     boolean isExistGroupTitle(Group group);
+    void updateFields(Group oldGroup, Group newGroup);
 }
