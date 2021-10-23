@@ -18,7 +18,7 @@ public class Cartridge {
 
     @NotNull
     @Column(name = "unique_identify", unique = true)
-    private String uniqIdentify;
+    private String uniqueIdentify;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
@@ -35,5 +35,8 @@ public class Cartridge {
     @Temporal(TemporalType.DATE)
     @Column(name = "added_date")
     private Date addedDate;
+
+    @Column(name = "description")
+    private String description;
 
 }
