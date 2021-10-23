@@ -1,5 +1,6 @@
 package com.andrewsavich.bajter.cartridgerefillservice.model.cartridge;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,13 +9,13 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 
 
-@Getter
-@Setter
+@Data
 @Entity
 @Table(name = "models")
-public class Model {
+public class Model implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

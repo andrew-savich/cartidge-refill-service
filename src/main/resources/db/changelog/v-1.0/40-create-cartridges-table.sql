@@ -2,8 +2,9 @@ create table cartridges(
     id bigserial not null primary key,
     added_date date not null,
     unique_identify varchar(30) not null,
-    model_title bigint references models (title),
-    client_naame bigint references clients (name),
+    model_title varchar(30) references models (title),
+    client_name varchar(30) references clients (name),
+    description varchar,
 
     constraint fk_title_model
         foreign key(model_title)

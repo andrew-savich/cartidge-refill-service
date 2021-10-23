@@ -35,4 +35,11 @@ public class ExceptionHandlerAdvice {
                 .status(HttpStatus.CONFLICT)
                 .body(e.getMessage());
     }
+
+    @ExceptionHandler(CartridgeUniqueIdentifyException.class)
+    public ResponseEntity handleException(CartridgeUniqueIdentifyException e){
+        return ResponseEntity
+                .status(HttpStatus.CONFLICT)
+                .body(e.getMessage());
+    }
 }
