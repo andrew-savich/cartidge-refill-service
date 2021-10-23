@@ -2,9 +2,6 @@ package com.andrewsavich.bajter.cartridgerefillservice.model.cartridge;
 
 import com.andrewsavich.bajter.cartridgerefillservice.model.client.Client;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
