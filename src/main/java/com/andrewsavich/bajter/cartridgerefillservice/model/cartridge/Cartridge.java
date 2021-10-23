@@ -21,7 +21,7 @@ public class Cartridge {
     private String uniqueIdentify;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "model_title", referencedColumnName="title")
     private Model model;
 
