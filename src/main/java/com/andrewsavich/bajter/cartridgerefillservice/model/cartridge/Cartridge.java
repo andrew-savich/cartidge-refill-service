@@ -20,23 +20,23 @@ public class Cartridge {
     private Long id;
 
     @NotNull
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
-    @Temporal(TemporalType.DATE)
-    @Column(name = "added_date")
-    private Date addedDate;
-
-    @NotNull
     @Column(name = "unique_identify", unique = true)
     private String uniqIdentify;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "model_id", referencedColumnName="id")
+    @JoinColumn(name = "model_title", referencedColumnName="title")
     private Model model;
 
     @NotNull
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "client_id", referencedColumnName="id")
+    @JoinColumn(name = "client_name", referencedColumnName="name")
     private Client client;
+
+    @NotNull
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @Temporal(TemporalType.DATE)
+    @Column(name = "added_date")
+    private Date addedDate;
 
 }

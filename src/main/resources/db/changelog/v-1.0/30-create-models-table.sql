@@ -1,6 +1,6 @@
 create table models(
     id bigserial not null primary key,
-    title varchar(30) not null,
+    title varchar(30) not null unique,
     group_title varchar(30),
     type varchar not null,
     color varchar,
