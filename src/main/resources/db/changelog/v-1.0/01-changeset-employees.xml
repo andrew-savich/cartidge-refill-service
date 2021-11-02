@@ -18,6 +18,15 @@ http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">
                 stripComments="true"
                 path="01-create-employees-table.sql"
         />
+        <sqlFile
+                dbms="postgresql"
+                encoding="utf8"
+                endDelimiter="\nGO"
+                relativeToChangelogFile="true"
+                splitStatements="true"
+                stripComments="true"
+                path="01-insert-employees-data.sql"
+        />
 
         <rollback>
             <sqlFile

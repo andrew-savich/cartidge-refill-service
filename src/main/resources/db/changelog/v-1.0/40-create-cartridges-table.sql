@@ -1,9 +1,9 @@
 create table cartridges(
     id bigserial not null primary key,
     added_date date not null,
-    unique_identify varchar(30) not null,
-    model_title varchar(30) references models (title),
-    client_name varchar(30) references clients (name),
+    unique_identify varchar(30) not null unique,
+    model_title varchar(30),
+    client_name varchar(30),
     description varchar,
 
     constraint fk_title_model

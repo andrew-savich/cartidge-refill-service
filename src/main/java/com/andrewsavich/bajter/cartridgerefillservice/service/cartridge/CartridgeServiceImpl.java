@@ -70,7 +70,7 @@ public class CartridgeServiceImpl implements CartridgeService{
         oldCartridge.setDescription(newCartridge.getDescription());
     }
 
-    public String generateUniqueIdentify(){
+    private String generateUniqueIdentify(){
         List<Cartridge> sortedCartridges = cartridgeRepository.findAll().stream()
                 .sorted(Comparator.comparing(Cartridge::getUniqueIdentify)).collect(Collectors.toList());
 
@@ -83,8 +83,11 @@ public class CartridgeServiceImpl implements CartridgeService{
         String lastUniqIdentifyStr = sortedCartridges.get(lastCartridgesIndex).getUniqueIdentify();
 
         lastGeneratedUniqueIdentifyNumber = Integer.parseInt(lastUniqIdentifyStr.substring(1));
+        ++lastGeneratedUniqueIdentifyNumber;
 
-        return "B" + ++lastGeneratedUniqueIdentifyNumber;
+        String uniqueIdentifyResult = "B" + String.valueOf(lastGeneratedUniqueIdentifyNumber);
+
+        return uniqueIdentifyResult;
     }
 
 }

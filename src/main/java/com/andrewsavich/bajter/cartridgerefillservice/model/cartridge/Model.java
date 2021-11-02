@@ -12,6 +12,7 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 
+
 @Data
 @Entity
 @Table(name = "models")

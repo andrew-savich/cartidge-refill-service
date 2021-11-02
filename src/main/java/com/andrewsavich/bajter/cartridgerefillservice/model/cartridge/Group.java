@@ -2,6 +2,8 @@ package com.andrewsavich.bajter.cartridgerefillservice.model.cartridge;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -25,8 +27,8 @@ public class Group implements Serializable {
     @Column(name = "description")
     private String description;
 
-    @JsonIgnore
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "group", cascade = CascadeType.MERGE)
-    private List<Model> models;
+   @JsonIgnore
+   @OneToMany(fetch = FetchType.LAZY, mappedBy = "group", cascade = CascadeType.MERGE)
+   private List<Model> models;
 
 }

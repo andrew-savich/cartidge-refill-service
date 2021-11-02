@@ -6,12 +6,13 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.Date;
 
+@Data
 @Entity
 @Table(name = "cartridges")
-@Data
-public class Cartridge {
+public class Cartridge implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -38,5 +39,4 @@ public class Cartridge {
 
     @Column(name = "description")
     private String description;
-
 }
