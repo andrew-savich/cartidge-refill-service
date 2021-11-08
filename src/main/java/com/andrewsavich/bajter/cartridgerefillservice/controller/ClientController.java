@@ -33,6 +33,14 @@ public class ClientController {
         return ResponseEntity.ok(client);
     }
 
+
+    @GetMapping("/getByName/{clientName}")
+    public ResponseEntity<Client> getClientByName(@PathVariable String clientName){
+        Client client = clientService.getClientByName(clientName);
+
+        return ResponseEntity.ok(client);
+    }
+
     @PostMapping("/create")
     public void createClient(@RequestBody Client client){
 
