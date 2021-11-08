@@ -30,6 +30,11 @@ public class CartridgeServiceImpl implements CartridgeService{
     }
 
     @Override
+    public Cartridge getCartridgeUniqueIdentify(String uniqueIdentify) {
+        return cartridgeRepository.findByUniqueIdentify(uniqueIdentify);
+    }
+
+    @Override
     public Cartridge saveCartridge(Cartridge cartridge) {
         if(cartridge.getUniqueIdentify() == null){
             cartridge.setUniqueIdentify(generateUniqueIdentify());

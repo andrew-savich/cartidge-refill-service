@@ -28,14 +28,24 @@ public class CartridgeController {
 
     @GetMapping("/get/{id}")
     public ResponseEntity<Cartridge> getCartridgeById(@PathVariable Long id){
+        log.info("Getting cartridge with id: " + id);
         Cartridge cartridge = cartridgeService.getCartridgeById(id);
+
+        return ResponseEntity.ok(cartridge);
+    }
+
+    @GetMapping("/getByUniqueIdentify/{uniqueIdentify}")
+    public ResponseEntity<Cartridge> getCartridgeUniqueIdentify(@PathVariable String uniqueIdentofy){
+        log.info("Getting cartridge with uniqueIdentofy: " + uniqueIdentofy);
+
+        Cartridge cartridge = cartridgeService.getCartridgeUniqueIdentify(uniqueIdentofy);
 
         return ResponseEntity.ok(cartridge);
     }
 
     @PostMapping("/create")
     public void createCartridge(@RequestBody Cartridge cartridge){
-        System.out.println("we've got cartridge for save: " + cartridge);
+        log.info("we've got cartridge for save: " + cartridge);
         if(cartridgeService.isExistCartridgeUniqIdentify(cartridge)){
             throw new CartridgeUniqueIdentifyException("Cartridge with '" + cartridge.getUniqueIdentify() + "' exists");
         }
