@@ -1,7 +1,6 @@
 package com.andrewsavich.bajter.cartridgerefillservice.model.cartridge;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,7 +10,8 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "groups")
 public class Group implements Serializable {

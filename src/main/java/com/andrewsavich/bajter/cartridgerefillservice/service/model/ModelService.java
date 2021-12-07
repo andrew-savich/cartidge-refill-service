@@ -9,6 +9,7 @@ import java.util.List;
 public interface ModelService {
     List<Model> getAllModels();
     Model getModelById(Long id);
+    Model getModelByTitle(String title);
     Model saveModel(Model model);
     void deleteModel(Model model);
     boolean isExistModelTitle(Model model);

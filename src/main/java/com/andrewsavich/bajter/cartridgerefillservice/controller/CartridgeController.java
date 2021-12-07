@@ -35,10 +35,10 @@ public class CartridgeController {
     }
 
     @GetMapping("/getByUniqueIdentify/{uniqueIdentify}")
-    public ResponseEntity<Cartridge> getCartridgeUniqueIdentify(@PathVariable String uniqueIdentofy){
-        log.info("Getting cartridge with uniqueIdentofy: " + uniqueIdentofy);
+    public ResponseEntity<Cartridge> getCartridgeUniqueIdentify(@PathVariable String uniqueIdentify){
+        log.info("Getting cartridge with uniqueIdentofy: " + uniqueIdentify);
 
-        Cartridge cartridge = cartridgeService.getCartridgeUniqueIdentify(uniqueIdentofy);
+        Cartridge cartridge = cartridgeService.getCartridgeUniqueIdentify(uniqueIdentify);
 
         return ResponseEntity.ok(cartridge);
     }

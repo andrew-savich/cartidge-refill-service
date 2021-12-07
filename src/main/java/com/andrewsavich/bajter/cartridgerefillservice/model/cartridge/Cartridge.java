@@ -1,7 +1,8 @@
 package com.andrewsavich.bajter.cartridgerefillservice.model.cartridge;
 
 import com.andrewsavich.bajter.cartridgerefillservice.model.client.Client;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -9,7 +10,8 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "cartridges")
 public class Cartridge implements Serializable {

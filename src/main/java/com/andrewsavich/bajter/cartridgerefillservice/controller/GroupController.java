@@ -33,6 +33,13 @@ public class GroupController {
         return ResponseEntity.ok(group);
     }
 
+    @GetMapping("/getByTitle/{groupTitle}")
+    public ResponseEntity<Group> getGroupByTitle(@PathVariable String groupTitle){
+        Group group = groupService.getGroupByTitle(groupTitle);
+
+        return ResponseEntity.ok(group);
+    }
+
     @PostMapping("/create")
     public void createGroup(@RequestBody Group group){
 

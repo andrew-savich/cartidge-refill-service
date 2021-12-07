@@ -37,6 +37,13 @@ public class ModelController {
         return ResponseEntity.ok(model);
     }
 
+    @GetMapping("/getByTitle/{modelTitle}")
+    public ResponseEntity<Model> getModelByTitle(@PathVariable String modelTitle){
+        Model model = modelService.getModelByTitle(modelTitle);
+
+        return ResponseEntity.ok(model);
+    }
+
     @GetMapping("/colors")
     public List<Color> getColors(){
         return modelService.getAllColors();

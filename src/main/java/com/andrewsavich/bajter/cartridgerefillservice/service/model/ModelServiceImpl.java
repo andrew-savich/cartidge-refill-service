@@ -27,6 +27,11 @@ public class ModelServiceImpl implements ModelService{
     }
 
     @Override
+    public Model getModelByTitle(String title) {
+        return modelRepository.findByTitle(title);
+    }
+
+    @Override
     public Model saveModel(Model model) {
         return modelRepository.save(model);
     }

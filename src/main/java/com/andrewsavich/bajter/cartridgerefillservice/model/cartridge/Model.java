@@ -1,6 +1,5 @@
 package com.andrewsavich.bajter.cartridgerefillservice.model.cartridge;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,9 +10,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 
-
-
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "models")
 public class Model implements Serializable {
