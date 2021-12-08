@@ -71,7 +71,7 @@ public class ClientController {
     }
 
     @Operation(summary = "Updating client")
-    @ApiResponse(responseCode = "200", description = "Employee was updated", content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)})
+    @ApiResponse(responseCode = "200", description = "Client was updated", content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)})
     @PutMapping
     public void updateClient(@RequestBody @Valid Client client){
         log.info("Controller: Got client for updating: " + client);
