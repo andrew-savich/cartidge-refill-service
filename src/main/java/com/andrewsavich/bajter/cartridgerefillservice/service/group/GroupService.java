@@ -9,8 +9,8 @@ public interface GroupService {
     List<Group> getAllGroups();
     Group getGroupById(Long id);
     Group getGroupByTitle(String title);
-    Group saveGroup(Group group);
-    void deleteGroup(Group group);
+    Group createGroup(Group group);
+    Group updateGroup(Group group);
+    void deleteGroupById(Long id);
     boolean isExistGroupTitle(Group group);
-    void updateFields(Group oldGroup, Group newGroup);
 }

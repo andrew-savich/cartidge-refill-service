@@ -2,7 +2,6 @@ package com.andrewsavich.bajter.cartridgerefillservice.service.group;
 
 import com.andrewsavich.bajter.cartridgerefillservice.model.cartridge.Group;
 import com.andrewsavich.bajter.cartridgerefillservice.repository.GroupRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,8 +9,11 @@ import java.util.List;
 @Service
 public class GroupServiceImpl implements GroupService {
 
-    @Autowired
-    private GroupRepository groupRepository;
+    private final GroupRepository groupRepository;
+
+    public GroupServiceImpl(GroupRepository groupRepository) {
+        this.groupRepository = groupRepository;
+    }
 
     @Override
     public List<Group> getAllGroups() {
@@ -29,13 +31,18 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
-    public Group saveGroup(Group group) {
+    public Group createGroup(Group group) {
         return groupRepository.save(group);
     }
 
     @Override
-    public void deleteGroup(Group group) {
-        groupRepository.delete(group);
+    public Group updateGroup(Group group) {
+        return groupRepository.save(group);
+    }
+
+    @Override
+    public void deleteGroupById(Long id) {
+        groupRepository.deleteById(id);
     }
 
     @Override
@@ -55,9 +62,4 @@ public class GroupServiceImpl implements GroupService {
         }
     }
 
-    @Override
-    public void updateFields(Group oldGroup, Group newGroup) {
-        oldGroup.setTitle(newGroup.getTitle());
-        oldGroup.setDescription(newGroup.getDescription());
-    }
 }
