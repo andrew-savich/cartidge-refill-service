@@ -25,8 +25,11 @@ import java.util.Map;
 @Slf4j
 public class EmployeeController {
 
-    @Autowired
-    private EmployeeService employeeService;
+    private final EmployeeService employeeService;
+
+    public EmployeeController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
+    }
 
     @Operation(summary = "Returning employee list")
     @ApiResponse(responseCode = "200", description = "Employees were found", content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)})
