@@ -2,7 +2,6 @@ package com.andrewsavich.bajter.cartridgerefillservice.service.client;
 
 import com.andrewsavich.bajter.cartridgerefillservice.model.client.Client;
 import com.andrewsavich.bajter.cartridgerefillservice.repository.ClientRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,8 +9,11 @@ import java.util.List;
 @Service
 public class ClientServiceImpl implements ClientService{
 
-    @Autowired
-    private ClientRepository clientRepository;
+    private final ClientRepository clientRepository;
+
+    public ClientServiceImpl(ClientRepository clientRepository) {
+        this.clientRepository = clientRepository;
+    }
 
     @Override
     public List<Client> getAllClients() {
@@ -29,7 +31,12 @@ public class ClientServiceImpl implements ClientService{
     }
 
     @Override
-    public Client saveClient(Client client) {
+    public Client createClient(Client client) {
+        return clientRepository.save(client);
+    }
+
+    @Override
+    public Client updateClient(Client client) {
         return clientRepository.save(client);
     }
 
@@ -55,10 +62,4 @@ public class ClientServiceImpl implements ClientService{
         }
     }
 
-    @Override
-    public void updateFields(Client oldClient, Client newClient) {
-        oldClient.setName(newClient.getName());
-        oldClient.setContact(newClient.getContact());
-        oldClient.setDescription(newClient.getDescription());
-    }
 }

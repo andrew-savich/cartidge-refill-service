@@ -8,8 +8,8 @@ public interface ClientService {
     List<Client> getAllClients();
     Client getClientById(Long id);
     Client getClientByName(String name);
-    Client saveClient(Client client);
+    Client createClient(Client client);
+    Client updateClient(Client client);
     void deleteClient(Client client);
     boolean isExistClientName(Client client);
-    void updateFields(Client oldClient, Client newClient);
 }
