@@ -3,72 +3,93 @@ package com.andrewsavich.bajter.cartridgerefillservice.controller;
 import com.andrewsavich.bajter.cartridgerefillservice.exception.GroupTitleExistsException;
 import com.andrewsavich.bajter.cartridgerefillservice.model.cartridge.Group;
 import com.andrewsavich.bajter.cartridgerefillservice.service.group.GroupService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
+import javax.validation.Valid;
 import java.util.List;
-import java.util.Map;
 
 @CrossOrigin(origins = "http://localhost:3000/")
 @RestController
-@RequestMapping("/group")
+@RequestMapping(value = "/api/v1/groups", produces = MediaType.APPLICATION_JSON_VALUE)
 @Slf4j
 public class GroupController {
 
-    @Autowired
-    private GroupService groupService;
+    private final GroupService groupService;
 
-    @GetMapping("/all")
+    public GroupController(GroupService groupService) {
+        this.groupService = groupService;
+    }
+
+    @Operation(summary = "Returning group list")
+    @ApiResponse(responseCode = "200", description = "Groups were found", content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)})
+    @GetMapping
     public List<Group> getCartridgeGroupList(){
+        log.info("Controller: getting group list");
+
         return groupService.getAllGroups();
     }
 
-    @GetMapping("/get/{id}")
-    public ResponseEntity<Group> getGroupById(@PathVariable Long id){
-        Group group = groupService.getGroupById(id);
+    @Operation(summary = "Returning group by id")
+    @ApiResponse(responseCode = "200", description = "Group was found", content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)})
+    @GetMapping("/{groupId}")
+    public ResponseEntity<Group> getGroupById(@PathVariable Long groupId){
+        log.info("Controller: getting group with id: " + groupId);
+        Group group = groupService.getGroupById(groupId);
 
+        log.info("Controller: sending group with id: " + groupId);
         return ResponseEntity.ok(group);
     }
 
-    @GetMapping("/getByTitle/{groupTitle}")
+    @Operation(summary = "Returning group by title")
+    @ApiResponse(responseCode = "200", description = "Group was found", content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)})
+    @GetMapping("/title/{groupTitle}")
     public ResponseEntity<Group> getGroupByTitle(@PathVariable String groupTitle){
+        log.info("Controller: getting group with title: " + groupTitle);
         Group group = groupService.getGroupByTitle(groupTitle);
 
+        log.info("Controller: sending group with title: " + groupTitle);
         return ResponseEntity.ok(group);
     }
 
-    @PostMapping("/create")
-    public void createGroup(@RequestBody Group group){
+    @Operation(summary = "Creating a new group")
+    @ApiResponse(responseCode = "200", description = "Group was created", content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)})
+    @PostMapping
+    public void createGroup(@RequestBody @Valid Group group){
+        log.info("Controller: Got group for creating: " + group);
 
         if(groupService.isExistGroupTitle(group)){
             throw new GroupTitleExistsException("Group with title '" + group.getTitle() + "' is exist");
         }
 
-        groupService.saveGroup(group);
+        groupService.createGroup(group);
     }
 
-    @PutMapping("/update/{id}")
-    public ResponseEntity<Group> updateGroup(@RequestBody Group changedGroup, @PathVariable Long id){
-        Group group = groupService.getGroupById(id);
-        groupService.updateFields(group, changedGroup);
+    @Operation(summary = "Updating group")
+    @ApiResponse(responseCode = "200", description = "Group was updated", content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)})
+    @PutMapping
+    public void updateGroup(@RequestBody @Valid Group group){
+        log.info("Controller: Got group for updating: " + group);
 
-        Group updatedGroup = groupService.saveGroup(group);
+        if(groupService.isExistGroupTitle(group)){
+            throw new GroupTitleExistsException("Group with title '" + group.getTitle() + "' is exist");
+        }
 
-        return ResponseEntity.ok(updatedGroup);
+        groupService.updateGroup(group);
     }
 
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Map<String, Boolean>> deleteGroup(@PathVariable Long id){
-        Group group = groupService.getGroupById(id);
-        groupService.deleteGroup(group);
+    @Operation(summary = "Deleting group by id")
+    @ApiResponse(responseCode = "200", description = "Group was deleted", content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)})
+    @DeleteMapping("/{groupId}")
+    public void deleteGroup(@PathVariable Long groupId){
+        log.info("Controller: Deleting group with id: " + groupId);
 
-        Map<String,Boolean> response = new HashMap<>();
-        response.put("Deleted", true);
-
-        return ResponseEntity.ok(response);
+        groupService.deleteGroupById(groupId);
     }
 
 }
