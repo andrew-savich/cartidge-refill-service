@@ -8,9 +8,9 @@ import java.util.List;
 public interface EmployeeService {
     List<Employee> getAllEmployee();
     Employee getEmployeeById(Long id);
-    Employee saveEmployee(Employee employee);
-    void deleteEmployee(Employee employee);
+    void createEmployee(Employee employee);
+    void updateEmployee(Employee employee);
+    void deleteEmployeeById(Long id);
     List<Position> getAllEmployeePositions();
     boolean isExistSameLogin(Employee employee);
-    void updateFields(Employee oldEmployee, Employee newEmployee);
 }

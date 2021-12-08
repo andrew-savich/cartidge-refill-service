@@ -12,6 +12,7 @@ import java.util.List;
 @Service
 public class EmployeeServiceImpl implements EmployeeService{
 
+
     @Autowired
     private EmployeeRepository employeeRepository;
 
@@ -26,13 +27,18 @@ public class EmployeeServiceImpl implements EmployeeService{
     }
 
     @Override
-    public Employee saveEmployee(Employee employee) {
-        return employeeRepository.save(employee);
+    public void createEmployee(Employee employee) {
+        employeeRepository.save(employee);
     }
 
     @Override
-    public void deleteEmployee(Employee employee) {
-        employeeRepository.delete(employee);
+    public void updateEmployee(Employee employee) {
+        employeeRepository.save(employee);
+    }
+
+    @Override
+    public void deleteEmployeeById(Long id) {
+        employeeRepository.deleteById(id);
     }
 
     @Override
@@ -55,15 +61,6 @@ public class EmployeeServiceImpl implements EmployeeService{
         } else {
             return existingEmployee.getId() != checkingEmployee.getId();
         }
-    }
-
-    @Override
-    public void updateFields(Employee oldEmployee, Employee newEmployee) {
-        oldEmployee.setLogin(newEmployee.getLogin());
-        oldEmployee.setFirstName(newEmployee.getFirstName());
-        oldEmployee.setLastName((newEmployee.getLastName()));
-        oldEmployee.setPassword(newEmployee.getPassword());
-        oldEmployee.setPosition(newEmployee.getPosition());
     }
 
 }
