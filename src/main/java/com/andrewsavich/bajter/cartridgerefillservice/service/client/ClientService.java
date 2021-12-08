@@ -10,6 +10,6 @@ public interface ClientService {
     Client getClientByName(String name);
     Client createClient(Client client);
     Client updateClient(Client client);
-    void deleteClient(Client client);
+    void deleteClientById(Long id);
     boolean isExistClientName(Client client);
 }
