@@ -32,13 +32,18 @@ public class ModelServiceImpl implements ModelService{
     }
 
     @Override
-    public Model saveModel(Model model) {
+    public Model createModel(Model model) {
         return modelRepository.save(model);
     }
 
     @Override
-    public void deleteModel(Model model) {
-        modelRepository.delete(model);
+    public Model updateModel(Model model) {
+        return modelRepository.save(model);
+    }
+
+    @Override
+    public void deleteModelById(Long id) {
+        modelRepository.deleteById(id);
     }
 
     @Override
@@ -57,16 +62,6 @@ public class ModelServiceImpl implements ModelService{
             return existingModel.getId() != checkingModel.getId();
         }
 
-    }
-
-    @Override
-    public void updateFields(Model oldModel, Model newModel){
-        oldModel.setTitle(newModel.getTitle());
-        oldModel.setGroup(newModel.getGroup());
-        oldModel.setType(newModel.getType());
-        oldModel.setColor(newModel.getColor());
-        oldModel.setDefaultGrams(newModel.getDefaultGrams());
-        oldModel.setDescription((newModel.getDescription()));
     }
 
     @Override

@@ -10,10 +10,10 @@ public interface ModelService {
     List<Model> getAllModels();
     Model getModelById(Long id);
     Model getModelByTitle(String title);
-    Model saveModel(Model model);
-    void deleteModel(Model model);
+    Model createModel(Model model);
+    Model updateModel(Model model);
+    void deleteModelById(Long id);
     boolean isExistModelTitle(Model model);
-    void updateFields(Model oldModel, Model newModel);
     List<Color> getAllColors();
     List<Type> getAllTypes();
 }
