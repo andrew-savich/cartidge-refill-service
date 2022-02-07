@@ -3,9 +3,6 @@ package com.andrewsavich.bajter.cartridgerefillservice.controller;
 import com.andrewsavich.bajter.cartridgerefillservice.exception.GroupTitleExistsException;
 import com.andrewsavich.bajter.cartridgerefillservice.model.cartridge.Group;
 import com.andrewsavich.bajter.cartridgerefillservice.service.group.GroupService;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -26,8 +23,6 @@ public class GroupController {
         this.groupService = groupService;
     }
 
-    @Operation(summary = "Returning group list")
-    @ApiResponse(responseCode = "200", description = "Groups were found", content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)})
     @GetMapping
     public List<Group> getCartridgeGroupList(){
         log.info("Controller: getting group list");
@@ -35,8 +30,6 @@ public class GroupController {
         return groupService.getAllGroups();
     }
 
-    @Operation(summary = "Returning group by id")
-    @ApiResponse(responseCode = "200", description = "Group was found", content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)})
     @GetMapping("/{groupId}")
     public ResponseEntity<Group> getGroupById(@PathVariable Long groupId){
         log.info("Controller: getting group with id: " + groupId);
@@ -46,8 +39,6 @@ public class GroupController {
         return ResponseEntity.ok(group);
     }
 
-    @Operation(summary = "Returning group by title")
-    @ApiResponse(responseCode = "200", description = "Group was found", content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)})
     @GetMapping("/title/{groupTitle}")
     public ResponseEntity<Group> getGroupByTitle(@PathVariable String groupTitle){
         log.info("Controller: getting group with title: " + groupTitle);
@@ -57,8 +48,6 @@ public class GroupController {
         return ResponseEntity.ok(group);
     }
 
-    @Operation(summary = "Creating a new group")
-    @ApiResponse(responseCode = "200", description = "Group was created", content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)})
     @PostMapping
     public void createGroup(@RequestBody @Valid Group group){
         log.info("Controller: Got group for creating: " + group);
@@ -70,8 +59,6 @@ public class GroupController {
         groupService.createGroup(group);
     }
 
-    @Operation(summary = "Updating group")
-    @ApiResponse(responseCode = "200", description = "Group was updated", content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)})
     @PutMapping
     public void updateGroup(@RequestBody @Valid Group group){
         log.info("Controller: Got group for updating: " + group);
@@ -83,8 +70,6 @@ public class GroupController {
         groupService.updateGroup(group);
     }
 
-    @Operation(summary = "Deleting group by id")
-    @ApiResponse(responseCode = "200", description = "Group was deleted", content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)})
     @DeleteMapping("/{groupId}")
     public void deleteGroup(@PathVariable Long groupId){
         log.info("Controller: Deleting group with id: " + groupId);
