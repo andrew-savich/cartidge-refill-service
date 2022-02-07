@@ -108,5 +108,3 @@ $RECYCLE.BIN/
 #Ignore META-INF 
 META-INF
 
-#Ignore properties
-*.properties
