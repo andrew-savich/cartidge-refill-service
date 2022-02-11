@@ -4,7 +4,6 @@ import com.andrewsavich.bajter.cartridgerefillservice.exception.EmployeeLoginExi
 import com.andrewsavich.bajter.cartridgerefillservice.model.employee.Employee;
 import com.andrewsavich.bajter.cartridgerefillservice.model.employee.Position;
 import com.andrewsavich.bajter.cartridgerefillservice.service.employee.EmployeeService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +14,6 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000/")
 @RestController
 @RequestMapping(value = "/api/v1/employees", produces = MediaType.APPLICATION_JSON_VALUE)
-@Slf4j
 public class EmployeeController {
 
     private final EmployeeService employeeService;
@@ -25,32 +23,25 @@ public class EmployeeController {
     }
 
     @GetMapping
-    public List<Employee> getEmployeeList(){
-        log.info("Controller: getting employee list");
-
+    public List<Employee> getEmployeeList() {
         return employeeService.getAllEmployee();
     }
 
     @GetMapping("/positions")
-    public List<Position> getEmployeePositions(){
-        log.info("Controller: getting position list");
-
+    public List<Position> getEmployeePositions() {
         return employeeService.getAllEmployeePositions();
     }
 
     @GetMapping("/{employeeId}")
-    public ResponseEntity<Employee> getEmployeeById(@PathVariable Long employeeId){
-        log.info("Controller: getting employee with id: " + employeeId);
+    public ResponseEntity<Employee> getEmployeeById(@PathVariable Long employeeId) {
         Employee employee = employeeService.getEmployeeById(employeeId);
 
-        log.info("Controller: sending employee with id: " + employeeId);
         return ResponseEntity.ok(employee);
     }
 
     @PostMapping
     public void createEmployee(@Valid @RequestBody Employee employee) {
-        log.info("Controller: Got employee for creating: " + employee);
-        if (employeeService.isExistSameLogin(employee)){
+        if (employeeService.isExistSameLogin(employee)) {
             throw new EmployeeLoginExistsException("Employee with this login '" + employee.getLogin() + "' already exists!");
         }
 
@@ -58,10 +49,8 @@ public class EmployeeController {
     }
 
     @PutMapping
-    public void updateEmployee(@RequestBody Employee employee){
-        log.info("Controller: Got employee for updating: " + employee);
-
-        if(employeeService.isExistSameLogin(employee)){
+    public void updateEmployee(@RequestBody Employee employee) {
+        if (employeeService.isExistSameLogin(employee)) {
             throw new EmployeeLoginExistsException("Employee with this login '" + employee.getLogin() + "' already exists!");
         }
 
@@ -69,8 +58,7 @@ public class EmployeeController {
     }
 
     @DeleteMapping("/{employeeId}")
-    public void deleteEmployeeById(@PathVariable Long employeeId){
-        log.info("Controller: Deleting employee with id: " + employeeId);
+    public void deleteEmployeeById(@PathVariable Long employeeId) {
 
         employeeService.deleteEmployeeById(employeeId);
     }
