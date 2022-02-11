@@ -34,32 +34,21 @@ public class EmployeeController {
 
     @GetMapping("/{employeeId}")
     public ResponseEntity<Employee> getEmployeeById(@PathVariable Long employeeId) {
-        Employee employee = employeeService.getEmployeeById(employeeId);
-
-        return ResponseEntity.ok(employee);
+        return ResponseEntity.ok(employeeService.getEmployeeById(employeeId));
     }
 
     @PostMapping
     public void createEmployee(@Valid @RequestBody Employee employee) {
-        if (employeeService.isExistSameLogin(employee)) {
-            throw new EmployeeLoginExistsException("Employee with this login '" + employee.getLogin() + "' already exists!");
-        }
-
         employeeService.createEmployee(employee);
     }
 
     @PutMapping
     public void updateEmployee(@RequestBody Employee employee) {
-        if (employeeService.isExistSameLogin(employee)) {
-            throw new EmployeeLoginExistsException("Employee with this login '" + employee.getLogin() + "' already exists!");
-        }
-
         employeeService.updateEmployee(employee);
     }
 
     @DeleteMapping("/{employeeId}")
     public void deleteEmployeeById(@PathVariable Long employeeId) {
-
         employeeService.deleteEmployeeById(employeeId);
     }
 
