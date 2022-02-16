@@ -12,5 +12,4 @@ public interface EmployeeService {
     void updateEmployee(Employee employee);
     void deleteEmployeeById(Long id);
     List<Position> getAllEmployeePositions();
-    boolean isExistSameLogin(Employee employee);
 }

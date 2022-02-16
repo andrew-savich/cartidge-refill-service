@@ -1,6 +1,5 @@
 package com.andrewsavich.bajter.cartridgerefillservice.controller;
 
-import com.andrewsavich.bajter.cartridgerefillservice.exception.EmployeeLoginExistsException;
 import com.andrewsavich.bajter.cartridgerefillservice.model.employee.Employee;
 import com.andrewsavich.bajter.cartridgerefillservice.model.employee.Position;
 import com.andrewsavich.bajter.cartridgerefillservice.service.employee.EmployeeService;

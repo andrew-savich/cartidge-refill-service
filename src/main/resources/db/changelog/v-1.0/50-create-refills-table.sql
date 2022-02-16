@@ -1,7 +1,7 @@
 create table refills(
     id bigserial not null primary key,
     refill_date date not null,
-    cartridge_identify varchar(30),
+    cartridge_id bigint,
     actual_grams smallint,
     changed_drum boolean,
     changed_pcr boolean,
@@ -11,15 +11,15 @@ create table refills(
     changed_chip boolean,
     changed_firmware boolean,
     comment varchar,
-    employee_login varchar(30),
+    employee_id bigint,
     is_issued_act boolean,
 
-    constraint fk_cartridge_identify
-       foreign key(cartridge_identify)
-           references cartridges(unique_identify),
+    constraint fk_cartridge_id
+       foreign key(cartridge_id)
+           references cartridges(id),
 
-    constraint fk_employee_login
-       foreign key(employee_login)
-           references employees(login)
+    constraint fk_employee_id
+       foreign key(employee_id)
+           references employees(id)
 )
 GO
