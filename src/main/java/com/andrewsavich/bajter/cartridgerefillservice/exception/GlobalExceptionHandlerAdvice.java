@@ -1,5 +1,7 @@
 package com.andrewsavich.bajter.cartridgerefillservice.exception;
 
+import com.andrewsavich.bajter.cartridgerefillservice.exception.client.ClientNameExistsException;
+import com.andrewsavich.bajter.cartridgerefillservice.exception.client.ClientNotFoundException;
 import com.andrewsavich.bajter.cartridgerefillservice.exception.employee.EmployeeLoginExistException;
 import com.andrewsavich.bajter.cartridgerefillservice.exception.employee.EmployeeNotFoundException;
 import org.springframework.http.HttpStatus;
@@ -25,9 +27,16 @@ public class GlobalExceptionHandlerAdvice {
     }
 
     @ExceptionHandler(ClientNameExistsException.class)
-    public ResponseEntity handleException(ClientNameExistsException e) {
+    public ResponseEntity handleClientNameExistsException(ClientNameExistsException e) {
         return ResponseEntity
-                .status(HttpStatus.CONFLICT)
+                .status(HttpStatus.BAD_REQUEST)
+                .body(e.getMessage());
+    }
+
+    @ExceptionHandler(ClientNotFoundException.class)
+    public ResponseEntity handleClientNotFoundException(ClientNotFoundException e) {
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
                 .body(e.getMessage());
     }
 

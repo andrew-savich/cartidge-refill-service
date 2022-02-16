@@ -6,10 +6,14 @@ import java.util.List;
 
 public interface ClientService {
     List<Client> getAllClients();
+
     Client getClientById(Long id);
+
     Client getClientByName(String name);
+
     Client createClient(Client client);
+
     Client updateClient(Client client);
+
     void deleteClientById(Long id);
-    boolean isExistClientName(Client client);
 }
