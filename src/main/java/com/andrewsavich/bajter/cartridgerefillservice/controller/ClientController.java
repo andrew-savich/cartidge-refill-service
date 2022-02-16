@@ -1,6 +1,5 @@
 package com.andrewsavich.bajter.cartridgerefillservice.controller;
 
-import com.andrewsavich.bajter.cartridgerefillservice.exception.ClientNameExistsException;
 import com.andrewsavich.bajter.cartridgerefillservice.model.client.Client;
 import com.andrewsavich.bajter.cartridgerefillservice.service.client.ClientService;
 import org.springframework.http.MediaType;
