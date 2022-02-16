@@ -28,33 +28,21 @@ public class ClientController {
 
     @GetMapping("/{clientId}")
     public ResponseEntity<Client> getClientById(@PathVariable Long clientId) {
-        Client client = clientService.getClientById(clientId);
-
-        return ResponseEntity.ok(client);
+        return ResponseEntity.ok(clientService.getClientById(clientId));
     }
 
     @GetMapping("/name/{clientName}")
     public ResponseEntity<Client> getClientByName(@PathVariable String clientName) {
-        Client client = clientService.getClientByName(clientName);
-
-        return ResponseEntity.ok(client);
+        return ResponseEntity.ok(clientService.getClientByName(clientName));
     }
 
     @PostMapping
     public void createClient(@RequestBody @Valid Client client) {
-        if (clientService.isExistClientName(client)) {
-            throw new ClientNameExistsException("Client with name" + client.getName() + " already exist");
-        }
-
         clientService.createClient(client);
     }
 
     @PutMapping
     public void updateClient(@RequestBody @Valid Client client) {
-        if (clientService.isExistClientName(client)) {
-            throw new ClientNameExistsException("Client with name " + client.getName() + " already exist");
-        }
-
         clientService.updateClient(client);
     }
 
