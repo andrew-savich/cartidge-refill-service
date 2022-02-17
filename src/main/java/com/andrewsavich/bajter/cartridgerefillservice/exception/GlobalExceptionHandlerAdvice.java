@@ -4,6 +4,8 @@ import com.andrewsavich.bajter.cartridgerefillservice.exception.client.ClientNam
 import com.andrewsavich.bajter.cartridgerefillservice.exception.client.ClientNotFoundException;
 import com.andrewsavich.bajter.cartridgerefillservice.exception.employee.EmployeeLoginExistException;
 import com.andrewsavich.bajter.cartridgerefillservice.exception.employee.EmployeeNotFoundException;
+import com.andrewsavich.bajter.cartridgerefillservice.exception.group.GroupNotFoundException;
+import com.andrewsavich.bajter.cartridgerefillservice.exception.group.GroupTitleExistsException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -41,9 +43,16 @@ public class GlobalExceptionHandlerAdvice {
     }
 
     @ExceptionHandler(GroupTitleExistsException.class)
-    public ResponseEntity handleException(GroupTitleExistsException e) {
+    public ResponseEntity handleGroupTitleExistsException(GroupTitleExistsException e) {
         return ResponseEntity
-                .status(HttpStatus.CONFLICT)
+                .status(HttpStatus.BAD_REQUEST)
+                .body(e.getMessage());
+    }
+
+    @ExceptionHandler(GroupNotFoundException.class)
+    public ResponseEntity handleGroupNotFoundException(GroupNotFoundException e) {
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
                 .body(e.getMessage());
     }
 

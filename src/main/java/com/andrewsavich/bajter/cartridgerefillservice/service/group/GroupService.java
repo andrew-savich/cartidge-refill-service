@@ -12,5 +12,4 @@ public interface GroupService {
     Group createGroup(Group group);
     Group updateGroup(Group group);
     void deleteGroupById(Long id);
-    boolean isExistGroupTitle(Group group);
 }

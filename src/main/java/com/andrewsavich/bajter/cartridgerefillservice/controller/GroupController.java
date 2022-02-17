@@ -1,6 +1,5 @@
 package com.andrewsavich.bajter.cartridgerefillservice.controller;
 
-import com.andrewsavich.bajter.cartridgerefillservice.exception.GroupTitleExistsException;
 import com.andrewsavich.bajter.cartridgerefillservice.model.cartridge.Group;
 import com.andrewsavich.bajter.cartridgerefillservice.service.group.GroupService;
 import org.springframework.http.MediaType;
@@ -28,33 +27,21 @@ public class GroupController {
 
     @GetMapping("/{groupId}")
     public ResponseEntity<Group> getGroupById(@PathVariable Long groupId) {
-        Group group = groupService.getGroupById(groupId);
-
-        return ResponseEntity.ok(group);
+        return ResponseEntity.ok(groupService.getGroupById(groupId));
     }
 
     @GetMapping("/title/{groupTitle}")
     public ResponseEntity<Group> getGroupByTitle(@PathVariable String groupTitle) {
-        Group group = groupService.getGroupByTitle(groupTitle);
-
-        return ResponseEntity.ok(group);
+        return ResponseEntity.ok(groupService.getGroupByTitle(groupTitle));
     }
 
     @PostMapping
     public void createGroup(@RequestBody @Valid Group group) {
-        if (groupService.isExistGroupTitle(group)) {
-            throw new GroupTitleExistsException("Group with title '" + group.getTitle() + "' is exist");
-        }
-
         groupService.createGroup(group);
     }
 
     @PutMapping
     public void updateGroup(@RequestBody @Valid Group group) {
-        if (groupService.isExistGroupTitle(group)) {
-            throw new GroupTitleExistsException("Group with title '" + group.getTitle() + "' is exist");
-        }
-
         groupService.updateGroup(group);
     }
 
