@@ -6,6 +6,8 @@ import com.andrewsavich.bajter.cartridgerefillservice.exception.employee.Employe
 import com.andrewsavich.bajter.cartridgerefillservice.exception.employee.EmployeeNotFoundException;
 import com.andrewsavich.bajter.cartridgerefillservice.exception.group.GroupNotFoundException;
 import com.andrewsavich.bajter.cartridgerefillservice.exception.group.GroupTitleExistsException;
+import com.andrewsavich.bajter.cartridgerefillservice.exception.model.ModelNotFoundException;
+import com.andrewsavich.bajter.cartridgerefillservice.exception.model.ModelTitleExistsException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -57,16 +59,23 @@ public class GlobalExceptionHandlerAdvice {
     }
 
     @ExceptionHandler(ModelTitleExistsException.class)
-    public ResponseEntity handleException(ModelTitleExistsException e) {
+    public ResponseEntity handleModelTitleExistsException(ModelTitleExistsException e) {
         return ResponseEntity
-                .status(HttpStatus.CONFLICT)
+                .status(HttpStatus.BAD_REQUEST)
+                .body(e.getMessage());
+    }
+
+    @ExceptionHandler(ModelNotFoundException.class)
+    public ResponseEntity handleModelNotFoundException(ModelNotFoundException e) {
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
                 .body(e.getMessage());
     }
 
     @ExceptionHandler(CartridgeUniqueIdentifyException.class)
     public ResponseEntity handleException(CartridgeUniqueIdentifyException e) {
         return ResponseEntity
-                .status(HttpStatus.CONFLICT)
+                .status(HttpStatus.BAD_REQUEST)
                 .body(e.getMessage());
     }
 }

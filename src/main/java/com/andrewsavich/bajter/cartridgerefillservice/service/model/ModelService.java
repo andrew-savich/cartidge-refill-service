@@ -8,12 +8,18 @@ import java.util.List;
 
 public interface ModelService {
     List<Model> getAllModels();
+
     Model getModelById(Long id);
+
     Model getModelByTitle(String title);
+
     Model createModel(Model model);
+
     Model updateModel(Model model);
+
     void deleteModelById(Long id);
-    boolean isExistModelTitle(Model model);
+
     List<Color> getAllColors();
+
     List<Type> getAllTypes();
 }

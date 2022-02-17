@@ -1,6 +1,5 @@
 package com.andrewsavich.bajter.cartridgerefillservice.controller;
 
-import com.andrewsavich.bajter.cartridgerefillservice.exception.ModelTitleExistsException;
 import com.andrewsavich.bajter.cartridgerefillservice.model.cartridge.Color;
 import com.andrewsavich.bajter.cartridgerefillservice.model.cartridge.Model;
 import com.andrewsavich.bajter.cartridgerefillservice.model.cartridge.Type;
@@ -30,16 +29,12 @@ public class ModelController {
 
     @GetMapping("/{modelId}")
     public ResponseEntity<Model> getModelById(@PathVariable Long modelId) {
-        Model model = modelService.getModelById(modelId);
-
-        return ResponseEntity.ok(model);
+        return ResponseEntity.ok(modelService.getModelById(modelId));
     }
 
     @GetMapping("/title/{modelTitle}")
     public ResponseEntity<Model> getModelByTitle(@PathVariable String modelTitle) {
-        Model model = modelService.getModelByTitle(modelTitle);
-
-        return ResponseEntity.ok(model);
+        return ResponseEntity.ok(modelService.getModelByTitle(modelTitle));
     }
 
     @GetMapping("/colors")
@@ -54,19 +49,11 @@ public class ModelController {
 
     @PostMapping
     public void createModel(@RequestBody @Valid Model model) {
-        if (modelService.isExistModelTitle(model)) {
-            throw new ModelTitleExistsException("Model with title '" + model.getTitle() + "' already exist");
-        }
-
         modelService.createModel(model);
     }
 
     @PutMapping
     public void updateModel(@RequestBody Model model) {
-        if (modelService.isExistModelTitle(model)) {
-            throw new ModelTitleExistsException("Model with title '" + model.getTitle() + "' already exist");
-        }
-
         modelService.updateModel(model);
     }
 
