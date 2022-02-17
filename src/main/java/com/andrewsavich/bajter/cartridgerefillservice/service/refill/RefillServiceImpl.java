@@ -1,7 +1,6 @@
 package com.andrewsavich.bajter.cartridgerefillservice.service.refill;
 
 import com.andrewsavich.bajter.cartridgerefillservice.exception.refill.RefillNotFoundException;
-import com.andrewsavich.bajter.cartridgerefillservice.model.cartridge.Group;
 import com.andrewsavich.bajter.cartridgerefillservice.model.refill.Refill;
 import com.andrewsavich.bajter.cartridgerefillservice.repository.RefillRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +33,7 @@ public class RefillServiceImpl implements RefillService {
 
     @Override
     public Refill saveRefill(Refill refill) {
+
         if (refill.getRefillDate() == null) {
             refill.setRefillDate(new Date());
         }
