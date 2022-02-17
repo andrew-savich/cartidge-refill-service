@@ -6,51 +6,38 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @CrossOrigin(origins = "http://localhost:3000/")
 @RestController
-@RequestMapping("/refill")
+@RequestMapping("/api/v1/refills")
 public class RefillController {
     @Autowired
     private RefillService refillService;
 
-    @GetMapping("/all")
+    @GetMapping
     public List<Refill> getAllRefills() {
-        List<Refill> refills = refillService.getAllRefills();
-        return refills;
+        return refillService.getAllRefills();
     }
 
-    @GetMapping("/get/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Refill> getRefillById(@PathVariable Long id) {
-        Refill refill = refillService.getRefillById(id);
-
-        return ResponseEntity.ok(refill);
+        return ResponseEntity.ok(refillService.getRefillById(id));
     }
 
-    @PostMapping("/create")
+    @PostMapping
     public void createEntity(@RequestBody Refill refill) {
         refillService.saveRefill(refill);
     }
 
-    @PutMapping("/update/{id}")
-    public ResponseEntity<Refill> updateRefill(@RequestBody Refill changedRefill, @PathVariable Long id) {
-        Refill updatedRefill = refillService.saveRefill(changedRefill);
-
-        return ResponseEntity.ok(updatedRefill);
+    @PutMapping
+    public void updateRefill(@RequestBody Refill changedRefill) {
+        refillService.saveRefill(changedRefill);
     }
 
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Map<String, Boolean>> deleteRefill(@PathVariable Long id) {
-        Refill refill = refillService.getRefillById(id);
-
-        refillService.deleteRefill(refill);
-
-        Map<String, Boolean> response = new HashMap<>();
-
-        return ResponseEntity.ok(response);
+    @DeleteMapping("/{id}")
+    public void deleteRefill(@PathVariable Long id) {
+        refillService.deleteRefillById(id);
     }
 
 }

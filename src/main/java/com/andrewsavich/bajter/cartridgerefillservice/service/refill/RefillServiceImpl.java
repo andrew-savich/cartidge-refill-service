@@ -1,5 +1,7 @@
 package com.andrewsavich.bajter.cartridgerefillservice.service.refill;
 
+import com.andrewsavich.bajter.cartridgerefillservice.exception.refill.RefillNotFoundException;
+import com.andrewsavich.bajter.cartridgerefillservice.model.cartridge.Group;
 import com.andrewsavich.bajter.cartridgerefillservice.model.refill.Refill;
 import com.andrewsavich.bajter.cartridgerefillservice.repository.RefillRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,9 +9,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 @Service
-public class RefillServiceImpl implements RefillService{
+public class RefillServiceImpl implements RefillService {
     @Autowired
     private RefillRepository refillRepository;
 
@@ -20,19 +23,33 @@ public class RefillServiceImpl implements RefillService{
 
     @Override
     public Refill getRefillById(Long id) {
-        return refillRepository.findById(id).get();
+        Refill refill = refillRepository.findById(id).orElse(null);
+
+        if (Objects.isNull(refill)) {
+            throw new RefillNotFoundException("Refill with id '" + id + "' not found");
+        }
+
+        return refill;
     }
 
     @Override
     public Refill saveRefill(Refill refill) {
-        if(refill.getRefillDate() == null){
+        if (refill.getRefillDate() == null) {
             refill.setRefillDate(new Date());
         }
+
         return refillRepository.save(refill);
     }
 
     @Override
-    public void deleteRefill(Refill refill) {
+    public void deleteRefillById(Long id) {
+        Refill refill = refillRepository.findById(id).orElse(null);
+
+        if (Objects.isNull(refill)) {
+            throw new RefillNotFoundException("Refill with id '" + id + "' not found");
+        }
+
         refillRepository.delete(refill);
     }
+
 }

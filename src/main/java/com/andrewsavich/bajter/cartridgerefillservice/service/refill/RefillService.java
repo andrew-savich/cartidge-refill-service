@@ -6,7 +6,10 @@ import java.util.List;
 
 public interface RefillService {
     List<Refill> getAllRefills();
+
     Refill getRefillById(Long id);
+
     Refill saveRefill(Refill refill);
-    void deleteRefill(Refill refill);
+
+    void deleteRefillById(Long id);
 }

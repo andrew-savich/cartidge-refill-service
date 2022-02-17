@@ -10,6 +10,7 @@ import com.andrewsavich.bajter.cartridgerefillservice.exception.group.GroupNotFo
 import com.andrewsavich.bajter.cartridgerefillservice.exception.group.GroupTitleExistsException;
 import com.andrewsavich.bajter.cartridgerefillservice.exception.model.ModelNotFoundException;
 import com.andrewsavich.bajter.cartridgerefillservice.exception.model.ModelTitleExistsException;
+import com.andrewsavich.bajter.cartridgerefillservice.exception.refill.RefillNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -83,6 +84,13 @@ public class GlobalExceptionHandlerAdvice {
 
     @ExceptionHandler(CartridgeNotFoundException.class)
     public ResponseEntity handleCartridgeNotFoundException(CartridgeNotFoundException e) {
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(e.getMessage());
+    }
+
+    @ExceptionHandler(RefillNotFoundException.class)
+    public ResponseEntity handleRefillNotFoundException(RefillNotFoundException e) {
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
                 .body(e.getMessage());
