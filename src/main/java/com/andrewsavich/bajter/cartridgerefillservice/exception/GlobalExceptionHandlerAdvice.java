@@ -1,5 +1,7 @@
 package com.andrewsavich.bajter.cartridgerefillservice.exception;
 
+import com.andrewsavich.bajter.cartridgerefillservice.exception.cartridge.CartridgeNotFoundException;
+import com.andrewsavich.bajter.cartridgerefillservice.exception.cartridge.CartridgeUniqueIdentifyException;
 import com.andrewsavich.bajter.cartridgerefillservice.exception.client.ClientNameExistsException;
 import com.andrewsavich.bajter.cartridgerefillservice.exception.client.ClientNotFoundException;
 import com.andrewsavich.bajter.cartridgerefillservice.exception.employee.EmployeeLoginExistException;
@@ -73,7 +75,14 @@ public class GlobalExceptionHandlerAdvice {
     }
 
     @ExceptionHandler(CartridgeUniqueIdentifyException.class)
-    public ResponseEntity handleException(CartridgeUniqueIdentifyException e) {
+    public ResponseEntity handleCartridgeUniqueIdentifyException(CartridgeUniqueIdentifyException e) {
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(e.getMessage());
+    }
+
+    @ExceptionHandler(CartridgeNotFoundException.class)
+    public ResponseEntity handleCartridgeNotFoundException(CartridgeNotFoundException e) {
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
                 .body(e.getMessage());

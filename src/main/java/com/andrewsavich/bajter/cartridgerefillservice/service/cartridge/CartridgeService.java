@@ -6,10 +6,13 @@ import java.util.List;
 
 public interface CartridgeService {
     List<Cartridge> getAllCartridges();
+
     Cartridge getCartridgeById(Long id);
-    Cartridge getCartridgeUniqueIdentify(String uniqueIdentify);
+
+    Cartridge getCartridgeByUniqueIdentify(String uniqueIdentify);
+
     Cartridge saveCartridge(Cartridge cartridge);
-    void deleteCartridge(Cartridge cartridge);
-    boolean isExistCartridgeUniqIdentify(Cartridge checkingCartridge);
-    void updateFields(Cartridge oldCartridge, Cartridge newCartridge);
+
+    void deleteCartridgeById(Long id);
+
 }
