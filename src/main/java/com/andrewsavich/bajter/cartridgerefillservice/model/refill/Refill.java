@@ -25,12 +25,12 @@ public class Refill {
 
     @NotNull
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "cartridge_identify", referencedColumnName = "unique_identify")
+    @JoinColumn(name = "cartridge_id", referencedColumnName = "id")
     private Cartridge cartridge;
 
     @NotNull
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "employee_login", referencedColumnName = "login")
+    @JoinColumn(name = "employee_id", referencedColumnName = "id")
     private Employee employee;
 
     @Column(name = "actual_grams")
