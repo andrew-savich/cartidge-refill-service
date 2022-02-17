@@ -37,12 +37,12 @@ public class GroupController {
 
     @PostMapping
     public void createGroup(@RequestBody @Valid Group group) {
-        groupService.createGroup(group);
+        groupService.saveGroup(group);
     }
 
     @PutMapping
     public void updateGroup(@RequestBody @Valid Group group) {
-        groupService.updateGroup(group);
+        groupService.saveGroup(group);
     }
 
     @DeleteMapping("/{groupId}")

@@ -49,12 +49,12 @@ public class ModelController {
 
     @PostMapping
     public void createModel(@RequestBody @Valid Model model) {
-        modelService.createModel(model);
+        modelService.saveModel(model);
     }
 
     @PutMapping
     public void updateModel(@RequestBody Model model) {
-        modelService.updateModel(model);
+        modelService.saveModel(model);
     }
 
     @DeleteMapping("/{modelId}")

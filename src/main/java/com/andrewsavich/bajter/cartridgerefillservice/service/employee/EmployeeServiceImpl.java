@@ -36,17 +36,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public void createEmployee(Employee employee) {
-
-        if (isExistSameLogin(employee)) {
-            throw new EmployeeLoginExistException("Employee with login '" + employee.getLogin() + "' exists");
-        }
-
-        employeeRepository.save(employee);
-    }
-
-    @Override
-    public void updateEmployee(Employee employee) {
+    public void saveEmployee(Employee employee) {
 
         if (isExistSameLogin(employee)) {
             throw new EmployeeLoginExistException("Employee with login '" + employee.getLogin() + "' exists");

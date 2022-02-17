@@ -47,17 +47,7 @@ public class ModelServiceImpl implements ModelService {
     }
 
     @Override
-    public Model createModel(Model model) {
-
-        if (isExistModelTitle(model)) {
-            throw new ModelTitleExistsException("Model with title '" + model.getTitle() + "' exists");
-        }
-
-        return modelRepository.save(model);
-    }
-
-    @Override
-    public Model updateModel(Model model) {
+    public Model saveModel(Model model) {
 
         if (isExistModelTitle(model)) {
             throw new ModelTitleExistsException("Model with title '" + model.getTitle() + "' exists");

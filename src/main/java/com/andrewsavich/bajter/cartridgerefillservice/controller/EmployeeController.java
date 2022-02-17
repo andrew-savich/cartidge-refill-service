@@ -38,12 +38,12 @@ public class EmployeeController {
 
     @PostMapping
     public void createEmployee(@Valid @RequestBody Employee employee) {
-        employeeService.createEmployee(employee);
+        employeeService.saveEmployee(employee);
     }
 
     @PutMapping
     public void updateEmployee(@RequestBody Employee employee) {
-        employeeService.updateEmployee(employee);
+        employeeService.saveEmployee(employee);
     }
 
     @DeleteMapping("/{employeeId}")

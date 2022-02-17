@@ -37,12 +37,12 @@ public class ClientController {
 
     @PostMapping
     public void createClient(@RequestBody @Valid Client client) {
-        clientService.createClient(client);
+        clientService.saveClient(client);
     }
 
     @PutMapping
     public void updateClient(@RequestBody @Valid Client client) {
-        clientService.updateClient(client);
+        clientService.saveClient(client);
     }
 
     @DeleteMapping("/{clientId}")

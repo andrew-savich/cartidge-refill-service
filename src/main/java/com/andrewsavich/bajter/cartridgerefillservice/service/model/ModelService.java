@@ -13,9 +13,7 @@ public interface ModelService {
 
     Model getModelByTitle(String title);
 
-    Model createModel(Model model);
-
-    Model updateModel(Model model);
+    Model saveModel(Model model);
 
     void deleteModelById(Long id);
 

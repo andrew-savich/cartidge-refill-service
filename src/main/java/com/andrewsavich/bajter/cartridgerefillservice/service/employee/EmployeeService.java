@@ -10,9 +10,7 @@ public interface EmployeeService {
 
     Employee getEmployeeById(Long id);
 
-    void createEmployee(Employee employee);
-
-    void updateEmployee(Employee employee);
+    void saveEmployee(Employee employee);
 
     void deleteEmployeeById(Long id);
 

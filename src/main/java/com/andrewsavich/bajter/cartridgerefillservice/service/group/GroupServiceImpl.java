@@ -46,17 +46,7 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
-    public Group createGroup(Group group) {
-
-        if (isExistGroupTitle(group)) {
-            throw new GroupTitleExistsException("Group with title '" + group.getTitle() + "' exists");
-        }
-
-        return groupRepository.save(group);
-    }
-
-    @Override
-    public Group updateGroup(Group group) {
+    public Group saveGroup(Group group) {
 
         if (isExistGroupTitle(group)) {
             throw new GroupTitleExistsException("Group with title '" + group.getTitle() + "' exists");

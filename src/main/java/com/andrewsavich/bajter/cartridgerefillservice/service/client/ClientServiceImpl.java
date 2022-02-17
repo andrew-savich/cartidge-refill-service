@@ -46,17 +46,7 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public Client createClient(Client client) {
-
-        if (isExistClientName(client)) {
-            throw new ClientNameExistsException("Client with name '" + client.getName() + "' exists");
-        }
-
-        return clientRepository.save(client);
-    }
-
-    @Override
-    public Client updateClient(Client client) {
+    public Client saveClient(Client client) {
 
         if (isExistClientName(client)) {
             throw new ClientNameExistsException("Client with name '" + client.getName() + "' exists");

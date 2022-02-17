@@ -11,9 +11,7 @@ public interface ClientService {
 
     Client getClientByName(String name);
 
-    Client createClient(Client client);
-
-    Client updateClient(Client client);
+    Client saveClient(Client client);
 
     void deleteClientById(Long id);
 }
